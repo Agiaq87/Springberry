@@ -6,6 +6,10 @@ import it.giaquinto.springberry.model.specific.java.JavaVendorProperties;
 import it.giaquinto.springberry.model.specific.java.JavaVmProperties;
 import it.giaquinto.springberry.model.specific.memory.MemoryProperties;
 import it.giaquinto.springberry.model.specific.os.OsProperties;
+import it.giaquinto.springberry.model.specific.runtime.RuntimeProperties;
+import it.giaquinto.springberry.model.specific.thread.ThreadProperties;
+
+import java.lang.management.ManagementFactory;
 
 public final class InstanceProperties {
 
@@ -18,7 +22,10 @@ public final class InstanceProperties {
 
     private final MemoryProperties memoryProperties;
     private final OsProperties osProperties;
+
+    private final RuntimeProperties runtimeProperties;
     private final SeparatorProperties separatorProperties;
+    private final ThreadProperties threadProperties;
     private final UserProperties userProperties;
 
     public InstanceProperties(final SecurityLevel level) {
@@ -29,8 +36,11 @@ public final class InstanceProperties {
         javaVmProperties = new JavaVmProperties();
         memoryProperties = new MemoryProperties(level);
         osProperties = new OsProperties();
+        runtimeProperties = new RuntimeProperties();
         separatorProperties = new SeparatorProperties();
+        threadProperties = new ThreadProperties();
         userProperties = new UserProperties();
+
     }
 
     public SecurityLevel getLevel() {
@@ -57,8 +67,16 @@ public final class InstanceProperties {
         return osProperties;
     }
 
+    public RuntimeProperties getRuntimeProperties() {
+        return runtimeProperties;
+    }
+
     public SeparatorProperties getSeparatorProperties() {
         return separatorProperties;
+    }
+
+    public ThreadProperties getThreadProperties() {
+        return threadProperties;
     }
 
     public UserProperties getUserProperties() {
@@ -74,7 +92,9 @@ public final class InstanceProperties {
                 ", javaVmProperties=" + javaVmProperties +
                 ", memoryProperties=" + memoryProperties +
                 ", osProperties=" + osProperties +
+                ", runtimeProperties=" + runtimeProperties +
                 ", separatorProperties=" + separatorProperties +
+                ", threadProperties=" + threadProperties +
                 ", userProperties=" + userProperties +
                 '}';
     }
