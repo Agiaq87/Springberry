@@ -1,6 +1,7 @@
 package it.giaquinto.springberry.utils.time;
 
 import it.giaquinto.springberry.model.time.OrderMagnitudeTime;
+import it.giaquinto.springberry.model.time.ReadableTime;
 import it.giaquinto.springberry.model.time.TimeUnit;
 
 public final class TimeConverter {
@@ -34,4 +35,22 @@ public final class TimeConverter {
 
         return new TimeUnit(value, returnedTime, returnedMagnitude);
     }
+
+    public long secondsToMinute(final long seconds) {
+        return seconds/60;
+    }
+
+    public long secondsToHour(final long seconds) {
+        return seconds/3600;
+    }
+
+    public long secondsToDay(final long seconds) {
+        return seconds/86400;
+    }
+
+    public ReadableTime secondsToReadable(final long seconds) {
+        return new ReadableTime(seconds);
+    }
+
+
 }

@@ -1,6 +1,6 @@
 package it.giaquinto.springberry.controller;
 
-import it.giaquinto.springberry.http.HttpRequest;
+import it.giaquinto.springberry.model.http.HttpRequest;
 import it.giaquinto.springberry.model.contract.SpringBerryController;
 import it.giaquinto.springberry.model.security.SecurityLevel;
 import it.giaquinto.springberry.model.specific.InstanceProperties;

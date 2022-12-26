@@ -1,6 +1,6 @@
 package it.giaquinto.springberry.model.contract;
 
-import it.giaquinto.springberry.http.HttpRequest;
+import it.giaquinto.springberry.model.http.HttpRequest;
 
 public interface SpringBerryController {
 

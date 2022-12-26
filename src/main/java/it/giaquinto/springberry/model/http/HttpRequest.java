@@ -1,4 +1,4 @@
-package it.giaquinto.springberry.http;
+package it.giaquinto.springberry.model.http;
 
 import org.springframework.web.bind.annotation.RequestMethod;
 
