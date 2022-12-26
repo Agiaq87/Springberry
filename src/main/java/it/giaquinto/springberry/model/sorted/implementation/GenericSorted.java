@@ -1,6 +1,6 @@
-package it.giaquinto.springberry.model.sorted;
+package it.giaquinto.springberry.model.sorted.implementation;
 
-import it.giaquinto.springberry.model.contract.sorted.SortedStrategy;
+import it.giaquinto.springberry.model.sorted.SortedStrategy;
 
 import java.util.Collection;
 import java.util.Comparator;

@@ -1,7 +1,7 @@
-package it.giaquinto.springberry.controller;
+package it.giaquinto.springberry.controller.implementation;
 
+import it.giaquinto.springberry.controller.SpringBerryController;
 import it.giaquinto.springberry.model.http.HttpRequest;
-import it.giaquinto.springberry.model.contract.SpringBerryController;
 import it.giaquinto.springberry.model.security.SecurityLevel;
 import it.giaquinto.springberry.model.specific.InstanceProperties;
 import org.springframework.web.bind.annotation.GetMapping;

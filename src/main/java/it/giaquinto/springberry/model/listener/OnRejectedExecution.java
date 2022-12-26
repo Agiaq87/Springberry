@@ -1,4 +1,4 @@
-package it.giaquinto.springberry.model.contract.concurrent;
+package it.giaquinto.springberry.model.listener;
 
 import java.util.concurrent.RejectedExecutionException;
 

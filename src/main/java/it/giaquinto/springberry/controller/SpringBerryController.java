@@ -1,4 +1,4 @@
-package it.giaquinto.springberry.model.contract;
+package it.giaquinto.springberry.controller;
 
 import it.giaquinto.springberry.model.http.HttpRequest;
 

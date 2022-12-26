@@ -1,8 +1,8 @@
 package it.giaquinto.springberry.utils.concurrent;
 
-import it.giaquinto.springberry.model.contract.concurrent.OnErrorExecution;
-import it.giaquinto.springberry.model.contract.concurrent.OnRejectedExecution;
-import it.giaquinto.springberry.model.contract.concurrent.OnSuccessExecution;
+import it.giaquinto.springberry.model.listener.OnErrorExecution;
+import it.giaquinto.springberry.model.listener.OnRejectedExecution;
+import it.giaquinto.springberry.model.listener.OnSuccessExecution;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

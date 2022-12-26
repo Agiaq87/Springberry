@@ -1,14 +1,12 @@
-package it.giaquinto.springberry.controller;
+package it.giaquinto.springberry.controller.implementation;
 
-import it.giaquinto.springberry.model.contract.SpringBerryController;
+import it.giaquinto.springberry.controller.SpringBerryController;
 import it.giaquinto.springberry.model.http.HttpRequest;
-import it.giaquinto.springberry.model.sorted.GenericSorted;
+import it.giaquinto.springberry.model.sorted.implementation.GenericSorted;
 import it.giaquinto.springberry.utils.string.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.LinkedList;
 
 @RestController
 public final class StringController implements SpringBerryController {

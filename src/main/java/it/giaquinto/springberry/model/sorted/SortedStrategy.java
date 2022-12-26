@@ -1,4 +1,4 @@
-package it.giaquinto.springberry.model.contract.sorted;
+package it.giaquinto.springberry.model.sorted;
 
 import java.util.Collection;
 import java.util.List;
