@@ -14,13 +14,13 @@ import java.util.Map;
 public final class ThreadProperties {
 
     //private final ThreadMXBean source;
-
-    private final int threadCount;
-    private final int daemonCount;
-    private final int peakThreadCount;
-    private final long totalStartedThreadCount;
     private final TimeUnit currentThreadCpuTime;
     private final TimeUnit currentThreadUserTime;
+    private final int daemonCount;
+    private final int peakThreadCount;
+    private final int threadCount;
+    private final long totalStartedThreadCount;
+
     private final Map<Long, ThreadInfo> threadsInfo = new HashMap<>();
     public ThreadProperties() {
         var source = ManagementFactory.getThreadMXBean();
@@ -38,10 +38,12 @@ public final class ThreadProperties {
         }
     }
 
+    public TimeUnit getCurrentThreadCpuTime() {
+        return currentThreadCpuTime;
+    }
 
-
-    public int getThreadCount() {
-        return threadCount;
+    public TimeUnit getCurrentThreadUserTime() {
+        return currentThreadUserTime;
     }
 
     public int getDaemonCount() {
@@ -52,16 +54,12 @@ public final class ThreadProperties {
         return peakThreadCount;
     }
 
+    public int getThreadCount() {
+        return threadCount;
+    }
+
     public long getTotalStartedThreadCount() {
         return totalStartedThreadCount;
-    }
-
-    public TimeUnit getCurrentThreadCpuTime() {
-        return currentThreadCpuTime;
-    }
-
-    public TimeUnit getCurrentThreadUserTime() {
-        return currentThreadUserTime;
     }
 
     public Map<Long, ThreadInfo> getThreadInfos() {
