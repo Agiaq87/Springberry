@@ -2,6 +2,9 @@ package it.giaquinto.springberry.controller.implementation;
 
 import it.giaquinto.springberry.controller.SpringBerryController;
 import it.giaquinto.springberry.model.http.HttpRequest;
+import it.giaquinto.springberry.utils.math.MathUtils;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -18,5 +21,39 @@ public final class MathCalculatorController implements SpringBerryController {
         };
     }
 
+    @GetMapping(path = "to-hex/{value}")
+    public String toHex(@PathVariable final String value) {
+        try {
+            return MathUtils.toHex(Long.decode(value));
+        } catch (final NumberFormatException numberFormatException) {
+            return "Not A Number";
+        }
+    }
 
+    @GetMapping(path = "to-octal/{value}")
+    public String toOctal(@PathVariable final String value) {
+        try {
+            return MathUtils.toOctal(Long.decode(value));
+        } catch (final NumberFormatException numberFormatException) {
+            return "Not A Number";
+        }
+    }
+
+    @GetMapping(path = "to-binary/{value}")
+    public String toBinary(@PathVariable final String value) {
+        try {
+            return MathUtils.toBinary(Long.decode(value));
+        } catch (final NumberFormatException numberFormatException) {
+            return "Not A Number";
+        }
+    }
+
+    @GetMapping(path = "factorial/{value}")
+    public String factorial(@PathVariable final String value) {
+        try {
+            return "" + MathUtils.factorial(Long.decode(value));
+        } catch (final NumberFormatException numberFormatException) {
+            return "Not A Number";
+        }
+    }
 }
