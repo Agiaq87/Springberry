@@ -4,15 +4,12 @@ import it.giaquinto.springberry.controller.SpringBerryController;
 import it.giaquinto.springberry.model.http.HttpRequest;
 import it.giaquinto.springberry.model.time.ReadableTime;
 import it.giaquinto.springberry.utils.time.TimeConverter;
-import org.springframework.format.datetime.standard.DateTimeFormatterFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.LocalDateTime;
-
 @RestController
-public final class TimeCalculatorController implements SpringBerryController {
+public final class TimeCalculatorController extends SpringBerryController {
     @Override
     public String ID() {
         return TimeCalculatorController.class.getName();

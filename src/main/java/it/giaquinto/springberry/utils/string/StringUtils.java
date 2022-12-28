@@ -1,22 +1,13 @@
 package it.giaquinto.springberry.utils.string;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
+@Component
 public final class StringUtils {
-
-    private static StringUtils INSTANCE = null;
-
-    private StringUtils() {}
-
-    public static StringUtils getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new StringUtils();
-        }
-
-        return INSTANCE;
-    }
 
     public List<Character> toList(final char[] string) {
         var returnedList = new LinkedList<Character>();

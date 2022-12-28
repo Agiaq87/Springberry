@@ -5,7 +5,7 @@ import it.giaquinto.springberry.model.http.HttpRequest;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public final class NoteController implements SpringBerryController {
+public final class NoteController extends SpringBerryController {
     @Override
     public String ID() {
         return NoteController.class.getName();

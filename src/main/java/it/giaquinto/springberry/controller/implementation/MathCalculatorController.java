@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public final class MathCalculatorController implements SpringBerryController {
+public final class MathCalculatorController extends SpringBerryController {
     @Override
     public String ID() {
         return MathCalculatorController.class.getName();
@@ -24,7 +24,7 @@ public final class MathCalculatorController implements SpringBerryController {
     @GetMapping(path = "to-hex/{value}")
     public String toHex(@PathVariable final String value) {
         try {
-            return MathUtils.toHex(Long.decode(value));
+            return mathUtils.toHex(Long.decode(value));
         } catch (final NumberFormatException numberFormatException) {
             return "Not A Number";
         }
@@ -33,7 +33,7 @@ public final class MathCalculatorController implements SpringBerryController {
     @GetMapping(path = "to-octal/{value}")
     public String toOctal(@PathVariable final String value) {
         try {
-            return MathUtils.toOctal(Long.decode(value));
+            return mathUtils.toOctal(Long.decode(value));
         } catch (final NumberFormatException numberFormatException) {
             return "Not A Number";
         }
@@ -42,7 +42,7 @@ public final class MathCalculatorController implements SpringBerryController {
     @GetMapping(path = "to-binary/{value}")
     public String toBinary(@PathVariable final String value) {
         try {
-            return MathUtils.toBinary(Long.decode(value));
+            return mathUtils.toBinary(Long.decode(value));
         } catch (final NumberFormatException numberFormatException) {
             return "Not A Number";
         }
@@ -51,7 +51,7 @@ public final class MathCalculatorController implements SpringBerryController {
     @GetMapping(path = "factorial/{value}")
     public String factorial(@PathVariable final String value) {
         try {
-            return "" + MathUtils.factorial(Long.decode(value));
+            return "" + mathUtils.factorial(Long.decode(value));
         } catch (final NumberFormatException numberFormatException) {
             return "Not A Number";
         }

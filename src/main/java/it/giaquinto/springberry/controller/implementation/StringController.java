@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public final class StringController implements SpringBerryController {
+public final class StringController extends SpringBerryController {
     @Override
     public String ID() {
         return StringController.class.getName();
@@ -29,9 +29,9 @@ public final class StringController implements SpringBerryController {
 
     @GetMapping(path = "orderDescending/{string}")
     public String orderDescending(@PathVariable final String string) {
-        return StringUtils.getInstance().revertToString(
+        return stringUtils.revertToString(
                 new GenericSorted<Character>().sortDescending(
-                        StringUtils.getInstance().toList(
+                        stringUtils.toList(
                                 string.toCharArray()
                         )
                 )
@@ -40,9 +40,9 @@ public final class StringController implements SpringBerryController {
 
     @GetMapping(path = "orderGrowing/{string}")
     public String orderGrowing(@PathVariable final String string) {
-        return StringUtils.getInstance().revertToString(
+        return stringUtils.revertToString(
                 new GenericSorted<Character>().sortGrowing(
-                        StringUtils.getInstance().toList(
+                        stringUtils.toList(
                                 string.toCharArray()
                         )
                 )
@@ -51,6 +51,6 @@ public final class StringController implements SpringBerryController {
 
     @GetMapping(path = "palindrome/{string}")
     public boolean palindrome(@PathVariable final String string) {
-        return StringUtils.getInstance().palindrome(string);
+        return stringUtils.palindrome(string);
     }
 }
