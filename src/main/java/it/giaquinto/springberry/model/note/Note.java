@@ -9,6 +9,4 @@ public record Note(
         String description,
         LocalDateTime dateTime,
         User user
-) {
-
-}
+) { }

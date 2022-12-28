@@ -2,14 +2,24 @@ package it.giaquinto.springberry.model.user.implementation;
 
 import it.giaquinto.springberry.model.user.User;
 
+import java.time.LocalDateTime;
+import java.util.Objects;
+
 public abstract class BaseUser implements User {
 
     private final String name;
     private final String surname;
 
-    public BaseUser(String name, String surname) {
+    private final LocalDateTime created;
+
+    public BaseUser(
+            final String name,
+            final String surname,
+            final LocalDateTime created
+    ) {
         this.name = name;
         this.surname = surname;
+        this.created = created;
     }
 
     public String getName() {
@@ -20,18 +30,19 @@ public abstract class BaseUser implements User {
         return surname;
     }
 
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
     @Override
-    public boolean equals(Object obj) {
-        return obj == this || obj != null && obj.getClass() == this.getClass();
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof BaseUser baseUser)) return false;
+        return Objects.equals(name, baseUser.name) && Objects.equals(surname, baseUser.surname) && Objects.equals(created, baseUser.created);
     }
 
     @Override
     public int hashCode() {
-        return 1;
-    }
-
-    @Override
-    public String toString() {
-        return "BaseUser[]";
+        return Objects.hash(name, surname, created);
     }
 }

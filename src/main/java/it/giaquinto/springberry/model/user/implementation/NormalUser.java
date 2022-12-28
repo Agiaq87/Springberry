@@ -4,9 +4,9 @@ import it.giaquinto.springberry.model.security.SecurityLevel;
 
 import java.time.LocalDateTime;
 
-public final class AdminUser extends BaseUser {
+public final class NormalUser extends BaseUser {
 
-    public AdminUser(
+    public NormalUser(
             final String name,
             final String surname,
             final LocalDateTime created
@@ -15,9 +15,17 @@ public final class AdminUser extends BaseUser {
     }
 
     @Override
-    public SecurityLevel levelOf() {
-        return SecurityLevel.ADMIN;
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 
+    @Override
+    public SecurityLevel levelOf() {
+        return SecurityLevel.NORMAL;
+    }
 }

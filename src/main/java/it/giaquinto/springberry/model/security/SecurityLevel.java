@@ -2,7 +2,8 @@ package it.giaquinto.springberry.model.security;
 
 public enum SecurityLevel {
     NONE,
-    USER,
+    GUEST,
+    NORMAL,
     POWER,
     ADMIN
 }

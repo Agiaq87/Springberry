@@ -4,8 +4,13 @@ import it.giaquinto.springberry.model.time.OrderMagnitudeTime;
 import it.giaquinto.springberry.model.time.ReadableTime;
 import it.giaquinto.springberry.model.time.TimeUnit;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public final class TimeConverter {
     private static TimeConverter INSTANCE = null;
+
+    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
 
     private TimeConverter() { };
 
@@ -15,6 +20,14 @@ public final class TimeConverter {
         }
 
         return INSTANCE;
+    }
+
+    public DateTimeFormatter getStandardDateTimeFormatter() {
+        return dateTimeFormatter;
+    }
+
+    public static String now() {
+        return LocalDateTime.now().format(dateTimeFormatter);
     }
 
     public long toMicroSeconds(final long nanoseconds) {

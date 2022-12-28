@@ -102,9 +102,7 @@ public final class InstanceProperties {
     // TODO
     public String properties() {
         return switch (level) {
-            case NONE -> "Nothing to show";
-            case USER -> "Nothing to show";
-            case POWER -> "Nothing to show";
+            case NORMAL, NONE, GUEST, POWER -> "Nothing to show";
             case ADMIN -> "TODO";
         };
     }
