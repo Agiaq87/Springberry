@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 public final class UserController {
 
-    private final UserDaoService userDaoService;
+    /*private final UserDaoService userDaoService;
 
     public UserController(UserDaoService userDaoService) {
         this.userDaoService = userDaoService;
@@ -74,5 +74,5 @@ public final class UserController {
     public ResponseEntity<BaseUser> createGuestUser(@RequestBody final BaseUser baseUser) {
         userDaoService.makeNewUser(baseUser, SecurityLevel.GUEST);
         return ResponseEntity.created(null).build();
-    }
+    }*/
 }

@@ -3,7 +3,6 @@ package it.giaquinto.springberry.controller.implementation;
 import it.giaquinto.springberry.controller.SpringBerryController;
 import it.giaquinto.springberry.model.http.HttpRequest;
 import it.giaquinto.springberry.model.sorted.implementation.GenericSorted;
-import it.giaquinto.springberry.utils.string.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,9 +28,9 @@ public final class StringController extends SpringBerryController {
 
     @GetMapping(path = "orderDescending/{string}")
     public String orderDescending(@PathVariable final String string) {
-        return stringUtils.revertToString(
+        return getStringUtils().revertToString(
                 new GenericSorted<Character>().sortDescending(
-                        stringUtils.toList(
+                        getStringUtils().toList(
                                 string.toCharArray()
                         )
                 )
@@ -40,9 +39,9 @@ public final class StringController extends SpringBerryController {
 
     @GetMapping(path = "orderGrowing/{string}")
     public String orderGrowing(@PathVariable final String string) {
-        return stringUtils.revertToString(
+        return getStringUtils().revertToString(
                 new GenericSorted<Character>().sortGrowing(
-                        stringUtils.toList(
+                        getStringUtils().toList(
                                 string.toCharArray()
                         )
                 )
@@ -51,6 +50,6 @@ public final class StringController extends SpringBerryController {
 
     @GetMapping(path = "palindrome/{string}")
     public boolean palindrome(@PathVariable final String string) {
-        return stringUtils.palindrome(string);
+        return getStringUtils().palindrome(string);
     }
 }

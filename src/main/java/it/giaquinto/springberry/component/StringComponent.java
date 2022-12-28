@@ -1,5 +1,7 @@
-package it.giaquinto.springberry.utils.string;
+package it.giaquinto.springberry.component;
 
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
@@ -7,7 +9,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Component
-public final class StringUtils {
+@Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
+public final class StringComponent {
 
     public List<Character> toList(final char[] string) {
         var returnedList = new LinkedList<Character>();

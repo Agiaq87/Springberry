@@ -1,18 +1,35 @@
 package it.giaquinto.springberry.controller;
 
 import it.giaquinto.springberry.model.http.HttpRequest;
-import it.giaquinto.springberry.utils.math.MathUtils;
-import it.giaquinto.springberry.utils.string.StringUtils;
+import it.giaquinto.springberry.component.MathComponent;
+import it.giaquinto.springberry.component.StringComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
 public abstract class SpringBerryController {
 
-    @Autowired
-    public StringUtils stringUtils;
+    private StringComponent stringComponent;
+
+    private MathComponent mathComponent;
+
+    public final StringComponent getStringUtils() {
+        return stringComponent;
+    }
 
     @Autowired
-    public MathUtils mathUtils;
+    public final void setStringUtils(final StringComponent stringComponent) {
+        this.stringComponent = stringComponent;
+    }
+
+    public final MathComponent getMathUtils() {
+        return mathComponent;
+    }
+
+    @Autowired
+    public final void setMathUtils(final MathComponent mathComponent) {
+        this.mathComponent = mathComponent;
+    }
+
 
     public abstract String ID();
 

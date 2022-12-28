@@ -4,7 +4,6 @@ import it.giaquinto.springberry.controller.SpringBerryController;
 import it.giaquinto.springberry.model.http.HttpRequest;
 import it.giaquinto.springberry.model.security.SecurityLevel;
 import it.giaquinto.springberry.model.specific.InstanceProperties;
-import it.giaquinto.springberry.utils.string.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

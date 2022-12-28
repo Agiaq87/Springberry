@@ -1,11 +1,16 @@
-package it.giaquinto.springberry.utils.math;
+package it.giaquinto.springberry.component;
 
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.math.BigInteger;
 
 @Component
-public final class MathUtils {
+@Lazy
+@Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
+public final class MathComponent {
 
     public BigInteger factorial(long value) {
         BigInteger returnedValue = BigInteger.valueOf(1);
