@@ -1,5 +1,8 @@
 package it.giaquinto.springberry.component;
 
+import it.giaquinto.springberry.model.math.number.BigIntegerNumberRepresentation;
+import it.giaquinto.springberry.model.math.number.LongNumberRepresentation;
+import it.giaquinto.springberry.model.math.NumberRepresentation;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
@@ -33,4 +36,8 @@ public final class MathComponent {
     public String toBinary(final Long decode) {
         return Long.toBinaryString(decode);
     }
+
+    public NumberRepresentation toAllBase(final Long decode) { return new LongNumberRepresentation(decode); }
+
+    public NumberRepresentation toAllBase(final BigInteger decode) { return new BigIntegerNumberRepresentation(decode); }
 }
