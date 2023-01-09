@@ -3,6 +3,8 @@ package it.giaquinto.springberry.controller;
 import it.giaquinto.springberry.model.http.HttpRequest;
 import it.giaquinto.springberry.component.MathComponent;
 import it.giaquinto.springberry.component.StringComponent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -11,6 +13,8 @@ public abstract class SpringBerryController {
     private StringComponent stringComponent;
 
     private MathComponent mathComponent;
+
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public final StringComponent getStringUtils() {
         return stringComponent;
@@ -30,6 +34,9 @@ public abstract class SpringBerryController {
         this.mathComponent = mathComponent;
     }
 
+    public final Logger getLogger() {
+        return logger;
+    }
 
     public abstract String ID();
 

@@ -9,6 +9,8 @@ import it.giaquinto.springberry.model.http.HttpRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.logging.Logger;
+
 @RestController
 public class LedController extends SpringBerryPi4jController {
     @Override

@@ -74,6 +74,16 @@
             <artifactId>pi4j-plugin-pigpio</artifactId>
             <version>${pi4j.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>3.0.0</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -81,6 +91,26 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.7.7</version>
+                <configuration>
+                    <!-- Build a fully executable jar to use it via /etc/init.d
+                         see https://docs.spring.io/spring-boot/docs/current/reference/html/deployment-install.html
+                    -->
+                    <executable>true</executable>
+                    <!-- Disabled Layers, as we have pi and not docker as target environment -->
+                    <!--                <layers>-->
+                    <!--                    <enabled>true</enabled>-->
+                    <!--
+                                </layers>
+                    -->
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>build-info</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
