@@ -1,5 +1,6 @@
 package it.giaquinto.springberry.controller.implementation;
 
+import com.pi4j.common.impl.DescriptorImpl;
 import com.pi4j.platform.Platform;
 import com.pi4j.provider.Provider;
 import it.giaquinto.springberry.controller.SpringBerryPi4jController;
@@ -27,10 +28,5 @@ public final class GPIOController extends SpringBerryPi4jController {
     @GetMapping(path = "providers")
     public Map<String, Provider> providers() {
         return getPi4JComponent().getProviders();
-    }
-
-    @GetMapping(path = "/platform")
-    public Platform platform() {
-        return getPi4JComponent().getPlatform();
     }
 }
