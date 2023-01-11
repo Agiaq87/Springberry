@@ -1,16 +1,6 @@
-package it.giaquinto.springberry.controller.implementation;
+package it.giaquinto.springberry.controller.base;
 
-import it.giaquinto.springberry.model.security.SecurityLevel;
-import it.giaquinto.springberry.model.user.implementation.AdminUser;
-import it.giaquinto.springberry.model.user.implementation.BaseUser;
-import it.giaquinto.springberry.model.user.implementation.GuestUser;
-import it.giaquinto.springberry.model.user.implementation.NormalUser;
-import it.giaquinto.springberry.model.user.service.UserDaoService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDateTime;
-import java.util.List;
 
 @RestController
 public final class UserController {

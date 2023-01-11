@@ -1,6 +1,6 @@
-package it.giaquinto.springberry.controller.implementation;
+package it.giaquinto.springberry.controller.base;
 
-import it.giaquinto.springberry.controller.SpringBerryController;
+import it.giaquinto.springberry.controller.SpringBerryBaseController;
 import it.giaquinto.springberry.model.http.HttpRequest;
 import it.giaquinto.springberry.model.time.ReadableTime;
 import it.giaquinto.springberry.utils.time.TimeConverter;
@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public final class TimeCalculatorController extends SpringBerryController {
+public final class TimeCalculatorBaseController extends SpringBerryBaseController {
     @Override
     public String ID() {
-        return TimeCalculatorController.class.getName();
+        return TimeCalculatorBaseController.class.getName();
     }
 
     @Override

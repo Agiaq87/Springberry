@@ -1,15 +1,14 @@
-package it.giaquinto.springberry.controller.implementation;
+package it.giaquinto.springberry.controller.pi4j;
 
-import it.giaquinto.springberry.controller.SpringBerryPi4jController;
+import it.giaquinto.springberry.controller.SpringBerryPi4JBaseController;
 import it.giaquinto.springberry.model.http.HttpRequest;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class LedController extends SpringBerryPi4jController {
+public class LedBaseController extends SpringBerryPi4JBaseController {
     @Override
     public String ID() {
-        return LedController.class.getName();
+        return LedBaseController.class.getName();
     }
 
     @Override

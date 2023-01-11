@@ -1,14 +1,14 @@
-package it.giaquinto.springberry.controller.implementation;
+package it.giaquinto.springberry.controller.base;
 
-import it.giaquinto.springberry.controller.SpringBerryController;
+import it.giaquinto.springberry.controller.SpringBerryBaseController;
 import it.giaquinto.springberry.model.http.HttpRequest;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public final class NoteController extends SpringBerryController {
+public final class NoteBaseController extends SpringBerryBaseController {
     @Override
     public String ID() {
-        return NoteController.class.getName();
+        return NoteBaseController.class.getName();
     }
 
     @Override

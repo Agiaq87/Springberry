@@ -1,18 +1,17 @@
-package it.giaquinto.springberry.controller.implementation;
+package it.giaquinto.springberry.controller.base;
 
-import it.giaquinto.springberry.controller.SpringBerryController;
+import it.giaquinto.springberry.controller.SpringBerryBaseController;
 import it.giaquinto.springberry.model.http.HttpRequest;
 import it.giaquinto.springberry.model.math.NumberRepresentation;
-import it.giaquinto.springberry.model.math.number.BigIntegerNumberRepresentation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public final class MathCalculatorController extends SpringBerryController {
+public final class MathCalculatorBaseController extends SpringBerryBaseController {
     @Override
     public String ID() {
-        return MathCalculatorController.class.getName();
+        return MathCalculatorBaseController.class.getName();
     }
 
     @Override

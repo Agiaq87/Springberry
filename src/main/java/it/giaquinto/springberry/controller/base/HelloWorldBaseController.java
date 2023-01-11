@@ -1,6 +1,6 @@
-package it.giaquinto.springberry.controller.implementation;
+package it.giaquinto.springberry.controller.base;
 
-import it.giaquinto.springberry.controller.SpringBerryController;
+import it.giaquinto.springberry.controller.SpringBerryBaseController;
 import it.giaquinto.springberry.model.http.HttpRequest;
 import it.giaquinto.springberry.model.security.SecurityLevel;
 import it.giaquinto.springberry.model.specific.InstanceProperties;
@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public final class HelloWorldController extends SpringBerryController {
+public final class HelloWorldBaseController extends SpringBerryBaseController {
 
     @Override
     public String ID() {
-        return HelloWorldController.class.getName();
+        return HelloWorldBaseController.class.getName();
     }
 
     @Override

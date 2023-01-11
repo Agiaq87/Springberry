@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
-public abstract class SpringBerryController {
+public abstract class SpringBerryBaseController {
 
     private StringComponent stringComponent;
 
