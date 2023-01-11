@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 @RestController
-public class GPIOController extends SpringBerryPi4jController {
+public final class GPIOController extends SpringBerryPi4jController {
 
     @Override
     public String ID() {
