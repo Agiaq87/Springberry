@@ -26,18 +26,17 @@ public class SpringBerryLoggerComponent implements AsyncUncaughtExceptionHandler
 
     private final Logger logger = LoggerFactory.getLogger("SpringBerry");
     private final SimpleDateFormat simpleDateFormat;
-    private final Path path;
     private TimeConverter timeUnit;
-    private final PrintWriter outputFileWriter;
+    private PrintWriter outputFileWriter;
     private Date currentDate;
     private LogMessage lastLogMessage;
 
 
     private SpringBerryLoggerComponent() {
         simpleDateFormat = new SimpleDateFormat();
-        currentDate = new Date();
         timeUnit = TimeConverter.getInstance();
-        path = FileUtils.makeDirectory(directory);
+        FileUtils.makeDirectory(directory);
+        currentDate = new Date();
         outputFileWriter = FileUtils.makeFile(directory, filePattern, currentDate);
         simpleDateFormat.applyPattern(logPattern);
         lastLogMessage = LogMessageFactory.direct("");
@@ -65,8 +64,8 @@ public class SpringBerryLoggerComponent implements AsyncUncaughtExceptionHandler
             case ERROR -> logger.error(logMessage.getMessage());
         }
 
-        if (isCurrentDateUpdate()) {
-
+        if (isCurrentDateNotUpdate()) {
+            initFile();
         }
 
         if (outputFileWriter != null) {
@@ -88,14 +87,6 @@ public class SpringBerryLoggerComponent implements AsyncUncaughtExceptionHandler
         return CompletableFuture.completedFuture(logMessage);
     }
 
-    private boolean isCurrentDateUpdate() {
-        return timeUnit.distanceInDaysBetween(currentDate, new Date()) != 0;
-    }
-
-    private static final String logPattern = "dd-MM-yy-HH.mm.ss SSS";
-    private static final String filePattern = "dd-MM-yyyy";
-    private static final String directory = "log";
-
     @Override
     public void handleUncaughtException(Throwable ex, Method method, Object... params) {
         writeLog(
@@ -109,4 +100,17 @@ public class SpringBerryLoggerComponent implements AsyncUncaughtExceptionHandler
                 )
         );
     }
+
+    private void initFile() {
+        currentDate = new Date();
+        outputFileWriter = FileUtils.makeFile(directory, filePattern, currentDate);
+    }
+
+    private boolean isCurrentDateNotUpdate() {
+        return timeUnit.distanceInDaysBetween(currentDate, new Date()) != 0;
+    }
+
+    private static final String logPattern = "dd-MM-yy-HH.mm.ss SSS";
+    private static final String filePattern = "dd-MM-yyyy";
+    private static final String directory = "log";
 }

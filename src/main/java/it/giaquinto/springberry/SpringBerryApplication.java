@@ -2,6 +2,7 @@ package it.giaquinto.springberry;
 
 import it.giaquinto.springberry.component.SpringBerryLoggerComponent;
 import it.giaquinto.springberry.model.builder.connector.SpringBerryConnectorBuilder;
+import it.giaquinto.springberry.model.log.LogMessageFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
