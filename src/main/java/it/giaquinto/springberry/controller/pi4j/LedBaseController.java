@@ -29,7 +29,7 @@ public class LedBaseController extends SpringBerryPi4JBaseController {
         if (RaspberryPin.haveRelativePin(pin)) {
             getPi4JComponent().getRaspBerryLedComponent(RaspberryPin.fromInt(pin)).thenAccept(led -> {
                 led.on();
-                SpringBerryLoggerComponent.instance().writeLog(LogMessageFactory.Pin.d(""));
+                SpringBerryLoggerComponent.instance().writeLog(LogMessageFactory.Pin.d(led));
             });
             return Integer.toString(pin);
         } else {
