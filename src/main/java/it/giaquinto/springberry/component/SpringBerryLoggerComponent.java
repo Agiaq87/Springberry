@@ -39,7 +39,7 @@ public class SpringBerryLoggerComponent implements AsyncUncaughtExceptionHandler
         currentDate = new Date();
         outputFileWriter = FileUtils.makeFile(directory, filePattern, currentDate);
         simpleDateFormat.applyPattern(logPattern);
-        lastLogMessage = LogMessageFactory.direct("");
+        lastLogMessage = LogMessageFactory.Generic.direct("");
     }
 
     public static SpringBerryLoggerComponent instance() {
@@ -48,13 +48,13 @@ public class SpringBerryLoggerComponent implements AsyncUncaughtExceptionHandler
 
     @Async
     public CompletableFuture<LogMessage> startLog() {
-        return writeLog(LogMessageFactory.direct("SpringBerry started"));
+        return writeLog(LogMessageFactory.Generic.direct("SpringBerry started"));
     }
 
     @Async
     public CompletableFuture<LogMessage> writeLog(final LogMessage logMessage) {
         if (lastLogMessage.equals(logMessage)) {
-            return CompletableFuture.completedFuture(LogMessageFactory.verbose("Already printed"));
+            return CompletableFuture.completedFuture(LogMessageFactory.Generic.verbose("Already printed"));
         }
 
         switch (logMessage.getLogOut()) {
@@ -90,7 +90,7 @@ public class SpringBerryLoggerComponent implements AsyncUncaughtExceptionHandler
     @Override
     public void handleUncaughtException(Throwable ex, Method method, Object... params) {
         writeLog(
-                LogMessageFactory.error(
+                LogMessageFactory.Generic.error(
                         String.format(
                                 "Ex: %s - Method: %s - Params: %s",
                                 ex.toString(),

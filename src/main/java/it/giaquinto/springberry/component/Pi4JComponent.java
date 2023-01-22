@@ -17,14 +17,17 @@ import it.giaquinto.springberry.model.raspberry.component.RaspBerryLedComponent;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Supplier;
 
 @Component
 @Lazy
 @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
-public final class Pi4JComponent {
+public class Pi4JComponent {
     private final PiGpio piGpio = PiGpio.newNativeInstance();
     private final Context pi4j = Pi4J
             .newContextBuilder()
@@ -61,7 +64,10 @@ public final class Pi4JComponent {
         return pi4j.providers().all();
     }
 
-    public RaspBerryLedComponent getRaspBerryLedComponent(final RaspberryPin pin) {
-        return new RaspBerryLedComponent(pi4j, pin);
+    @Async
+    public CompletableFuture<RaspBerryLedComponent> getRaspBerryLedComponent(final RaspberryPin pin) {
+        return CompletableFuture.supplyAsync(
+                () -> new RaspBerryLedComponent(pi4j, pin)
+        );
     }
 }

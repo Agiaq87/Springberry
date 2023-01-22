@@ -6,6 +6,7 @@ import com.pi4j.io.gpio.digital.DigitalOutputConfig;
 import it.giaquinto.springberry.model.raspberry.RaspBerryComponent;
 import it.giaquinto.springberry.model.raspberry.RaspberryPin;
 
+
 public class RaspBerryLedComponent extends RaspBerryComponent {
     /**
      * Pi4J digital output instance used by this component
