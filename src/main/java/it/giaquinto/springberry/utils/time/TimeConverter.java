@@ -6,6 +6,7 @@ import it.giaquinto.springberry.model.time.TimeUnit;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public final class TimeConverter {
     private static TimeConverter INSTANCE = null;
@@ -65,5 +66,10 @@ public final class TimeConverter {
         return new ReadableTime(seconds);
     }
 
-
+    public long distanceInDaysBetween(final Date first, final Date second) {
+        return java.util.concurrent.TimeUnit.DAYS.convert(
+                Math.abs(first.getTime() - second.getTime()),
+                java.util.concurrent.TimeUnit.MILLISECONDS
+        );
+    }
 }
