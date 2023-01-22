@@ -45,15 +45,15 @@ public final class Pi4JComponent {
             )
             .build();
 
-    public final Context getPi4j() {
+    public Context getPi4j() {
         return pi4j;
     }
 
-    public final Platform getPlatform() {
+    public Platform getPlatform() {
         return pi4j.getPlatform();
     }
 
-    public final Map<String, Provider> getProviders() {
+    public Map<String, Provider> getProviders() {
         if (pi4j == null || pi4j.providers() == null) {
             return null;
         }
@@ -61,7 +61,7 @@ public final class Pi4JComponent {
         return pi4j.providers().all();
     }
 
-    public final RaspBerryLedComponent getRaspBerryLedComponent(final RaspberryPin pin) {
+    public RaspBerryLedComponent getRaspBerryLedComponent(final RaspberryPin pin) {
         return new RaspBerryLedComponent(pi4j, pin);
     }
 }
