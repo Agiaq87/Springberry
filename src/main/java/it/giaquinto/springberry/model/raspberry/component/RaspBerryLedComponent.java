@@ -12,6 +12,7 @@ public class RaspBerryLedComponent extends RaspBerryComponent {
      * Pi4J digital output instance used by this component
      */
     private final DigitalOutput digitalOutput;
+    private final RaspberryPin address;
 
     /**
      * Creates a new simpleLed component with a custom BCM pin.
@@ -21,6 +22,7 @@ public class RaspBerryLedComponent extends RaspBerryComponent {
      */
     public RaspBerryLedComponent(Context pi4j, RaspberryPin address) {
         this.digitalOutput = pi4j.create(buildDigitalOutputConfig(pi4j, address));
+        this.address = address;
     }
 
     /**
@@ -78,5 +80,9 @@ public class RaspBerryLedComponent extends RaspBerryComponent {
                 .name("LED")
                 .address(address.getPin())
                 .build();
+    }
+
+    public RaspberryPin getAddress() {
+        return address;
     }
 }

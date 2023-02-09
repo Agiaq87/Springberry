@@ -21,27 +21,27 @@ public final class TimeCalculatorBaseController extends SpringBerryBaseControlle
                 HttpRequest.GET
         };
     }
-    @GetMapping(path= "/current-date-time")
+    @GetMapping(path= "time/current-date-time")
     public String currentDateTime() {
         return TimeConverter.now();
     }
 
-    @GetMapping(path= "/convert-seconds-to-minute/{seconds}")
+    @GetMapping(path= "time/convert-seconds-to-minute/{seconds}")
     public String convertSecondsToMinute(@PathVariable long seconds) {
         return String.format("%d minute(s)", TimeConverter.getInstance().secondsToMinute(seconds));
     }
 
-    @GetMapping(path= "/convert-seconds-to-hour/{seconds}")
+    @GetMapping(path= "time/convert-seconds-to-hour/{seconds}")
     public String convertSecondsToHour(@PathVariable long seconds) {
         return String.format("%d hour(s)", TimeConverter.getInstance().secondsToHour(seconds));
     }
 
-    @GetMapping(path= "/convert-seconds-to-day/{seconds}")
+    @GetMapping(path= "time/convert-seconds-to-day/{seconds}")
     public String convertSecondsToDay(@PathVariable long seconds) {
         return String.format("%d day(s)", TimeConverter.getInstance().secondsToDay(seconds));
     }
 
-    @GetMapping(path= "/convert-seconds-to-readable/{seconds}")
+    @GetMapping(path= "time/convert-seconds-to-readable/{seconds}")
     public ReadableTime convertSecondsToReadableTime(@PathVariable long seconds) {
         return TimeConverter.getInstance().secondsToReadable(seconds);
     }

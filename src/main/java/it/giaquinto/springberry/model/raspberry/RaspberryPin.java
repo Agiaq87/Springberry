@@ -2,7 +2,7 @@ package it.giaquinto.springberry.model.raspberry;
 
 public enum RaspberryPin {
     SDA1(2),
-    SCL1(2),
+    SCL1(5),
     D4(4),
     TXD(14),
     RXD(15),

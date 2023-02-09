@@ -21,12 +21,12 @@ public final class StringBaseController extends SpringBerryBaseController {
         };
     }
 
-    @GetMapping(path = "length/{string}")
+    @GetMapping(path = "string/length/{string}")
     public int length(@PathVariable final String string) {
         return string.length();
     }
 
-    @GetMapping(path = "orderDescending/{string}")
+    @GetMapping(path = "string/orderDescending/{string}")
     public String orderDescending(@PathVariable final String string) {
         return getStringUtils().revertToString(
                 new GenericSorted<Character>().sortDescending(
@@ -37,7 +37,7 @@ public final class StringBaseController extends SpringBerryBaseController {
         );
     }
 
-    @GetMapping(path = "orderGrowing/{string}")
+    @GetMapping(path = "string/orderGrowing/{string}")
     public String orderGrowing(@PathVariable final String string) {
         return getStringUtils().revertToString(
                 new GenericSorted<Character>().sortGrowing(
@@ -48,7 +48,7 @@ public final class StringBaseController extends SpringBerryBaseController {
         );
     }
 
-    @GetMapping(path = "palindrome/{string}")
+    @GetMapping(path = "string/palindrome/{string}")
     public boolean palindrome(@PathVariable final String string) {
         return getStringUtils().palindrome(string);
     }

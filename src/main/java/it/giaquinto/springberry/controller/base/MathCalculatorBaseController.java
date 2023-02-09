@@ -21,7 +21,7 @@ public final class MathCalculatorBaseController extends SpringBerryBaseControlle
         };
     }
 
-    @GetMapping(path = "to-hex/{value}")
+    @GetMapping(path = "math/to-hex/{value}")
     public String toHex(@PathVariable final String value) {
         try {
             return getMathUtils().toHex(Long.decode(value));
@@ -30,7 +30,7 @@ public final class MathCalculatorBaseController extends SpringBerryBaseControlle
         }
     }
 
-    @GetMapping(path = "to-octal/{value}")
+    @GetMapping(path = "math/to-octal/{value}")
     public String toOctal(@PathVariable final String value) {
         try {
             return getMathUtils().toOctal(Long.decode(value));
@@ -39,7 +39,7 @@ public final class MathCalculatorBaseController extends SpringBerryBaseControlle
         }
     }
 
-    @GetMapping(path = "to-binary/{value}")
+    @GetMapping(path = "math/to-binary/{value}")
     public String toBinary(@PathVariable final String value) {
         try {
             return getMathUtils().toBinary(Long.decode(value));
@@ -48,7 +48,7 @@ public final class MathCalculatorBaseController extends SpringBerryBaseControlle
         }
     }
 
-    @GetMapping(path = "to-all-base/{value}")
+    @GetMapping(path = "math/to-all-base/{value}")
     public NumberRepresentation toAllBase(@PathVariable final String value) {
         try {
             return getMathUtils().toAllBase(Long.decode(value));
@@ -57,7 +57,7 @@ public final class MathCalculatorBaseController extends SpringBerryBaseControlle
         }
     }
 
-    @GetMapping(path = "factorial/{value}")
+    @GetMapping(path = "math/factorial/{value}")
     public NumberRepresentation factorial(@PathVariable final String value) {
         try {
             return getMathUtils().toAllBase(getMathUtils().factorial(Long.decode(value)));
