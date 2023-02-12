@@ -4,7 +4,7 @@ import com.pi4j.context.Context;
 import com.pi4j.io.gpio.digital.DigitalOutput;
 import com.pi4j.io.gpio.digital.DigitalOutputConfig;
 import it.giaquinto.springberry.model.raspberry.RaspBerryComponent;
-import it.giaquinto.springberry.model.raspberry.RaspberryPin;
+import it.giaquinto.springberry.model.raspberry.pin.RaspberryPin;
 
 
 public class RaspBerryLedComponent extends RaspBerryComponent {

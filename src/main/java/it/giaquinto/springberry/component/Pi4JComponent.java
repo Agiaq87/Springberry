@@ -12,7 +12,7 @@ import com.pi4j.plugin.pigpio.provider.serial.PiGpioSerialProvider;
 import com.pi4j.plugin.pigpio.provider.spi.PiGpioSpiProvider;
 import com.pi4j.plugin.raspberrypi.platform.RaspberryPiPlatform;
 import com.pi4j.provider.Provider;
-import it.giaquinto.springberry.model.raspberry.RaspberryPin;
+import it.giaquinto.springberry.model.raspberry.pin.RaspberryPin;
 import it.giaquinto.springberry.model.raspberry.component.RaspBerryLedComponent;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Lazy;
@@ -22,7 +22,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Supplier;
 
 @Component
 @Lazy
