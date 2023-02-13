@@ -8,6 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+
+import java.util.concurrent.Executor;
 
 @SpringBootApplication
 @EnableAsync
@@ -17,8 +20,6 @@ public class SpringBerryApplication{
         SpringApplication.run(SpringBerryApplication.class, args);
         SpringBerryLoggerComponent.instance().startLog();
     }
-
-
 
     @Bean
     public TomcatServletWebServerFactory servletContainer() {

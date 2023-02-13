@@ -4,7 +4,7 @@ import com.pi4j.context.Context;
 import com.pi4j.io.gpio.digital.DigitalOutput;
 import com.pi4j.io.gpio.digital.DigitalOutputConfig;
 import it.giaquinto.springberry.model.raspberry.RaspBerryComponent;
-import it.giaquinto.springberry.model.raspberry.pin.RaspberryPin;
+import it.giaquinto.springberry.model.raspberry.pin.RaspberryEnumPin;
 
 
 public class RaspBerryLedComponent extends RaspBerryComponent {
@@ -12,7 +12,7 @@ public class RaspBerryLedComponent extends RaspBerryComponent {
      * Pi4J digital output instance used by this component
      */
     private final DigitalOutput digitalOutput;
-    private final RaspberryPin address;
+    private final RaspberryEnumPin address;
 
     /**
      * Creates a new simpleLed component with a custom BCM pin.
@@ -20,7 +20,7 @@ public class RaspBerryLedComponent extends RaspBerryComponent {
      * @param pi4j    Pi4J context
      * @param address Custom BCM pin address
      */
-    public RaspBerryLedComponent(Context pi4j, RaspberryPin address) {
+    public RaspBerryLedComponent(Context pi4j, RaspberryEnumPin address) {
         this.digitalOutput = pi4j.create(buildDigitalOutputConfig(pi4j, address));
         this.address = address;
     }
@@ -74,7 +74,7 @@ public class RaspBerryLedComponent extends RaspBerryComponent {
      * @param address GPIO Address of the relay
      * @return Return Digital Output configuration
      */
-    protected DigitalOutputConfig buildDigitalOutputConfig(Context pi4j, RaspberryPin address) {
+    protected DigitalOutputConfig buildDigitalOutputConfig(Context pi4j, RaspberryEnumPin address) {
         return DigitalOutput.newConfigBuilder(pi4j)
                 .id("BCM" + address)
                 .name("LED")
@@ -82,7 +82,7 @@ public class RaspBerryLedComponent extends RaspBerryComponent {
                 .build();
     }
 
-    public RaspberryPin getAddress() {
+    public RaspberryEnumPin getAddress() {
         return address;
     }
 }
