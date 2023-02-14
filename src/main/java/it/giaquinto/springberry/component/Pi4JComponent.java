@@ -13,9 +13,10 @@ import com.pi4j.plugin.pigpio.provider.spi.PiGpioSpiProvider;
 import com.pi4j.plugin.raspberrypi.platform.RaspberryPiPlatform;
 import com.pi4j.provider.Provider;
 import it.giaquinto.springberry.model.log.LogMessage;
-import it.giaquinto.springberry.model.log.LogMessageFactory;
-import it.giaquinto.springberry.model.raspberry.pin.*;
 import it.giaquinto.springberry.model.raspberry.component.RaspBerryLedComponent;
+import it.giaquinto.springberry.model.raspberry.pin.IncorrectPhysicalPinSpecifiedException;
+import it.giaquinto.springberry.model.raspberry.pin.RaspberryEnumPin;
+import it.giaquinto.springberry.model.raspberry.pin.RaspberryPin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Lazy;
@@ -61,16 +62,12 @@ public class Pi4JComponent {
                 .build();
 
 
-        try {
-            makeMap().thenAccept(
-                    map -> {
-                        physicalPinMap = map;
-                        logger.writeLog(new LogMessage("Map of pins correctly created"));
-                    }
-            );
-        } catch (final IncorrectPhysicalPinSpecifiedException e) {
-            logger.writeLog(new LogMessage("IncorrectPhysicalPinSpecifiedException caught"));
-        }
+        makeMap().thenAccept(
+                map -> {
+                    physicalPinMap = map;
+                    logger.writeLog(new LogMessage("Map of pins correctly created"));
+                }
+        );
 
 
     }
@@ -99,16 +96,20 @@ public class Pi4JComponent {
     }
 
     @Async
-    CompletableFuture<TreeMap<Integer, RaspberryPin>> makeMap() throws IncorrectPhysicalPinSpecifiedException {
-        final TreeMap<Integer, RaspberryPin> temp = new TreeMap<>();
-
-        for (int i = 0; i <= 40; i++) {
-            temp.put(i, RaspberryPin.fromPhysicalPin(i));
-        }
-
-
+    CompletableFuture<TreeMap<Integer, RaspberryPin>> makeMap() {
         return CompletableFuture.supplyAsync(
-                () -> temp
+                () -> {
+                    final TreeMap<Integer, RaspberryPin> temp = new TreeMap<>();
+
+                    for (int i = 0; i <= 40; i++) {
+                        try {
+                            temp.put(i, RaspberryPin.fromPhysicalPin(i));
+                        } catch (IncorrectPhysicalPinSpecifiedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                    return temp;
+                }
         );
     }
 }
