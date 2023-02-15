@@ -26,7 +26,7 @@ public class LedBaseController extends SpringBerryPi4JBaseController {
     @GetMapping(path = "led/{pin}")
     public String blinkLed(@PathVariable final int pin) {
         if (RaspberryEnumPin.haveRelativePin(pin)) {
-            getPi4JComponent().getRaspBerryLedComponent(RaspberryEnumPin.fromInt(pin)).thenAccept(led -> {
+            getPi4j().getRaspBerryLedComponent(RaspberryEnumPin.fromInt(pin)).thenAccept(led -> {
                 led.on();
                 SpringBerryLoggerComponent.instance().writeLog(
                         LogMessageFactory.Pin.d(

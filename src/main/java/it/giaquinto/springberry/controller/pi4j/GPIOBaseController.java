@@ -29,13 +29,13 @@ public final class GPIOBaseController extends SpringBerryPi4JBaseController {
 
     @GetMapping(path = "providers")
     public Map<String, Provider> providers() {
-        return getPi4JComponent().getProviders();
+        return getPi4j().getProviders();
     }
 
     @GetMapping(path = "gpio/{pin}")
     public String blinkLed(@PathVariable final int pin) {
         if (RaspberryEnumPin.haveRelativePin(pin)) {
-            getPi4JComponent().getRaspBerryLedComponent(RaspberryEnumPin.fromInt(pin)).thenAccept(led -> {
+            getPi4j().getRaspBerryLedComponent(RaspberryEnumPin.fromInt(pin)).thenAccept(led -> {
                 led.on();
                 SpringBerryLoggerComponent.instance().writeLog(
                         LogMessageFactory.Pin.d(

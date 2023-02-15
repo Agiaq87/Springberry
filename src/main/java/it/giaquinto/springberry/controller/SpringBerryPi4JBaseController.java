@@ -7,11 +7,11 @@ public abstract class SpringBerryPi4JBaseController extends SpringBerryBaseContr
     private Pi4JComponent pi4JComponent;
 
     @Autowired
-    public void setPi4JComponent(Pi4JComponent pi4JComponent) {
+    public void setPi4j(Pi4JComponent pi4JComponent) {
         this.pi4JComponent = pi4JComponent;
     }
 
-    public Pi4JComponent getPi4JComponent() {
+    public Pi4JComponent getPi4j() {
         return pi4JComponent;
     }
 
