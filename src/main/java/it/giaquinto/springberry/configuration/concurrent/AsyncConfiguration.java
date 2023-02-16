@@ -1,3 +1,4 @@
+/*
 package it.giaquinto.springberry.configuration.concurrent;
 
 import it.giaquinto.springberry.component.SpringBerryLoggerComponent;
@@ -36,3 +37,4 @@ public class AsyncConfiguration implements AsyncConfigurer {
         return executor;
     }
 }
+*/
