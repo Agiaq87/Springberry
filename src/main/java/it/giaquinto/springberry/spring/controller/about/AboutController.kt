@@ -9,6 +9,7 @@ import it.giaquinto.springberry.spring.bean.springberrybean.HardwareSoftwareProp
 import it.giaquinto.springberry.spring.bean.springberrybean.properties.OsProperties
 import it.giaquinto.springberry.spring.bean.springberrybean.properties.RuntimeProperties
 import it.giaquinto.springberry.spring.configuration.Identifier
+import it.giaquinto.springberry.spring.configuration.RestRadix
 import it.giaquinto.springberry.spring.configuration.SpringBerryConfiguration
 import it.giaquinto.springberry.spring.controller.SpringBerryController
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
@@ -18,20 +19,22 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class AboutController: SpringBerryController<HardwareSoftwareProperties> {
     companion object {
-        const val uniqueRestRadix: String = "about"
+        const val uniqueRestRadix: RestRadix = "about"
     }
 
     private val hardwareSoftwareProperties: HardwareSoftwareProperties
+
+    override val identifier: Identifier
+        get() = this.javaClass.packageName
+
+    override val uniqueRestRadix: RestRadix
+        get() = AboutController.uniqueRestRadix
 
     init {
         AnnotationConfigApplicationContext(SpringBerryConfiguration::class.java).also {
             hardwareSoftwareProperties = it.getBean("hardwareSoftwareProperties") as HardwareSoftwareProperties
         }
     }
-
-    override val identifier: Identifier
-        get() = this.javaClass.packageName
-
 
     @GetMapping(AboutController.uniqueRestRadix)
     override fun defaultResponse() = hardwareSoftwareProperties
@@ -44,9 +47,6 @@ class AboutController: SpringBerryController<HardwareSoftwareProperties> {
 
     @GetMapping("${AboutController.uniqueRestRadix}/os")
     fun osProperties(): OsProperties = hardwareSoftwareProperties.operatingSystem
-
-    @GetMapping("${AboutController.uniqueRestRadix}/readableMemory")
-    fun readableMemoryProperties(): OsProperties = hardwareSoftwareProperties.operatingSystem
 
     @GetMapping("${AboutController.uniqueRestRadix}/runtime")
     fun runtimeProperties(): RuntimeProperties = hardwareSoftwareProperties.runtimeProperties
