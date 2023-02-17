@@ -18,10 +18,10 @@ public class AsyncConfiguration implements AsyncConfigurer {
         return executor;
     }
 
-    @Override
+    /*@Override
     public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
         return SpringBerryLoggerComponent.instance();
-    }
+    }*/
 
     @Bean
     public Executor taskExecutor() {

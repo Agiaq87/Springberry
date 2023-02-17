@@ -28,22 +28,22 @@ public final class TimeCalculatorBaseController extends SpringBerryBaseControlle
 
     @GetMapping(path= "time/convert-seconds-to-minute/{seconds}")
     public String convertSecondsToMinute(@PathVariable long seconds) {
-        return String.format("%d minute(s)", TimeConverter.getInstance().secondsToMinute(seconds));
+        return String.format("%d minute(s)", TimeConverter.INSTANCE.secondsToMinute(seconds));
     }
 
     @GetMapping(path= "time/convert-seconds-to-hour/{seconds}")
     public String convertSecondsToHour(@PathVariable long seconds) {
-        return String.format("%d hour(s)", TimeConverter.getInstance().secondsToHour(seconds));
+        return String.format("%d hour(s)", TimeConverter.INSTANCE.secondsToHour(seconds));
     }
 
     @GetMapping(path= "time/convert-seconds-to-day/{seconds}")
     public String convertSecondsToDay(@PathVariable long seconds) {
-        return String.format("%d day(s)", TimeConverter.getInstance().secondsToDay(seconds));
+        return String.format("%d day(s)", TimeConverter.INSTANCE.secondsToDay(seconds));
     }
 
     @GetMapping(path= "time/convert-seconds-to-readable/{seconds}")
     public ReadableTime convertSecondsToReadableTime(@PathVariable long seconds) {
-        return TimeConverter.getInstance().secondsToReadable(seconds);
+        return TimeConverter.INSTANCE.secondsToReadable(seconds);
     }
 
 

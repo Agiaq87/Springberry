@@ -1,49 +1,21 @@
-package it.giaquinto.springberry.model.specific.runtime;
+package it.giaquinto.springberry.spring.bean.springberrybean.properties
 
-import it.giaquinto.springberry.model.time.OrderMagnitudeTime;
-import it.giaquinto.springberry.model.time.TimeUnit;
-import it.giaquinto.springberry.utils.time.TimeConverter;
+import it.giaquinto.springberry.model.time.OrderMagnitudeTime
+import it.giaquinto.springberry.model.time.TimeUnit
+import it.giaquinto.springberry.utils.time.TimeConverter
+import java.lang.management.ManagementFactory
 
-import java.lang.management.ManagementFactory;
-import java.lang.management.RuntimeMXBean;
-import java.util.Map;
+class RuntimeProperties {
 
-public final class RuntimeProperties {
+    val startTime: TimeUnit
+    val timeZone: String
+        get() = System.getProperty("user.timezone")
+    val upTime: TimeUnit
 
-    //private final RuntimeMXBean source;
-
-    private final TimeUnit startTime;
-    private final String timeZone;
-    private final TimeUnit upTime;
-
-
-    public RuntimeProperties() {
-        var source = ManagementFactory.getRuntimeMXBean();
-
-        startTime = TimeConverter.getInstance().toReadableUnit(source.getStartTime(), OrderMagnitudeTime.MILLI);
-        timeZone = System.getProperty("user.timezone");
-        upTime = TimeConverter.getInstance().toReadableUnit(source.getStartTime(), OrderMagnitudeTime.MILLI);
-    }
-
-    public TimeUnit getStartTime() {
-        return startTime;
-    }
-
-    public String getTimeZone() {
-        return timeZone;
-    }
-
-    public TimeUnit getUpTime() {
-        return upTime;
-    }
-
-
-    @Override
-    public String toString() {
-        return "RuntimeProperties{" +
-                "startTime=" + startTime +
-                ", timeZone='" + timeZone + '\'' +
-                ", upTime=" + upTime +
-                '}';
+    init {
+        ManagementFactory.getRuntimeMXBean().also {
+            startTime = TimeConverter.toReadableUnit(it.startTime, OrderMagnitudeTime.MILLI)
+            upTime = TimeConverter.toReadableUnit(it.startTime, OrderMagnitudeTime.MILLI)
+        }
     }
 }

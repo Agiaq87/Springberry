@@ -1,75 +1,58 @@
-package it.giaquinto.springberry.utils.time;
+package it.giaquinto.springberry.utils.time
 
-import it.giaquinto.springberry.model.time.OrderMagnitudeTime;
-import it.giaquinto.springberry.model.time.ReadableTime;
-import it.giaquinto.springberry.model.time.TimeUnit;
+import it.giaquinto.springberry.model.time.OrderMagnitudeTime
+import it.giaquinto.springberry.model.time.ReadableTime
+import it.giaquinto.springberry.model.time.TimeUnit
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.math.abs
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
+object TimeConverter {
+    fun toMicroSeconds(nanoseconds: Long): Long {
+        return nanoseconds / 1000
+    }
 
-public final class TimeConverter {
-    private static TimeConverter INSTANCE = null;
-
-    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
-
-    private TimeConverter() { };
-
-    public static TimeConverter getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new TimeConverter();
+    fun toReadableUnit(value: Long, orderMagnitudeTime: OrderMagnitudeTime): TimeUnit {
+        var returnedTime = value
+        var returnedMagnitude = orderMagnitudeTime
+        var continueRedux = value > 1000
+        while (continueRedux && OrderMagnitudeTime.hasNext(returnedMagnitude)) {
+            returnedTime /= 1000
+            returnedMagnitude = OrderMagnitudeTime.toNext(returnedMagnitude)
+            continueRedux = returnedTime > 1000
         }
-
-        return INSTANCE;
+        return TimeUnit(value, returnedTime, returnedMagnitude)
     }
 
-    public DateTimeFormatter getStandardDateTimeFormatter() {
-        return dateTimeFormatter;
+    fun secondsToMinute(seconds: Long): Long {
+        return seconds / 60
     }
 
-    public static String now() {
-        return LocalDateTime.now().format(dateTimeFormatter);
+    fun secondsToHour(seconds: Long): Long {
+        return seconds / 3600
     }
 
-    public long toMicroSeconds(final long nanoseconds) {
-        return nanoseconds/1000;
+    fun secondsToDay(seconds: Long): Long {
+        return seconds / 86400
     }
 
-    public TimeUnit toReadableUnit(final long value, final OrderMagnitudeTime orderMagnitudeTime) {
-        long returnedTime = value;
-        OrderMagnitudeTime returnedMagnitude = orderMagnitudeTime;
-        boolean continueRedux = value > 1000;
-
-        while (continueRedux) {
-            returnedTime/=1000;
-            returnedMagnitude = OrderMagnitudeTime.toNext(returnedMagnitude);
-
-            continueRedux = returnedTime > 1000;
-        }
-
-        return new TimeUnit(value, returnedTime, returnedMagnitude);
+    fun secondsToReadable(seconds: Long): ReadableTime {
+        return ReadableTime(seconds)
     }
 
-    public long secondsToMinute(final long seconds) {
-        return seconds/60;
-    }
-
-    public long secondsToHour(final long seconds) {
-        return seconds/3600;
-    }
-
-    public long secondsToDay(final long seconds) {
-        return seconds/86400;
-    }
-
-    public ReadableTime secondsToReadable(final long seconds) {
-        return new ReadableTime(seconds);
-    }
-
-    public long distanceInDaysBetween(final Date first, final Date second) {
+    fun distanceInDaysBetween(first: Date, second: Date): Long {
         return java.util.concurrent.TimeUnit.DAYS.convert(
-                Math.abs(first.getTime() - second.getTime()),
-                java.util.concurrent.TimeUnit.MILLISECONDS
-        );
+            abs(first.time - second.time),
+            java.util.concurrent.TimeUnit.MILLISECONDS
+        )
+    }
+
+    @JvmStatic
+    private val standardDateTimeFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy")
+
+    @JvmStatic
+    fun now(): String {
+        return LocalDateTime.now().format(standardDateTimeFormatter)
     }
 }

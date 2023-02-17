@@ -1,34 +1,7 @@
-package it.giaquinto.springberry.model.specific;
+package it.giaquinto.springberry.spring.bean.springberrybean.properties
 
-public final class SeparatorProperties {
-    private final String file;
-    private final String line;
-    private final String path;
-
-    public SeparatorProperties() {
-        file = System.getProperty("file.separator");
-        line = System.getProperty("line.separator");
-        path = System.getProperty("path.separator");
-    }
-
-    public String getFile() {
-        return file;
-    }
-
-    public String getLine() {
-        return line;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    @Override
-    public String toString() {
-        return "SeparatorProperties{" +
-                "file='" + file + '\'' +
-                ", line='" + line + '\'' +
-                ", path='" + path + '\'' +
-                '}';
-    }
+class SeparatorProperties {
+    val file: String = System.getProperty("file.separator")
+    val line: String = System.getProperty("line.separator")
+    val path: String = System.getProperty("path.separator")
 }

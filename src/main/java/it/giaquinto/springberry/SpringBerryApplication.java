@@ -13,12 +13,12 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import java.util.concurrent.Executor;
 
 @SpringBootApplication
-@EnableAsync
+//@EnableAsync
 public class SpringBerryApplication{
 
     public static void main(String[] args) {
         SpringApplication.run(SpringBerryApplication.class, args);
-        SpringBerryLoggerComponent.instance().startLog();
+        //SpringBerryLoggerComponent.instance().startLog();
     }
 
     @Bean

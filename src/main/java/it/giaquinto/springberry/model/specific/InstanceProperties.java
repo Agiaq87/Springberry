@@ -1,15 +1,10 @@
 package it.giaquinto.springberry.model.specific;
 
 import it.giaquinto.springberry.model.security.SecurityLevel;
-import it.giaquinto.springberry.model.specific.java.JavaProperties;
+import it.giaquinto.springberry.spring.bean.springberrybean.properties.*;
 import it.giaquinto.springberry.model.specific.java.JavaVendorProperties;
 import it.giaquinto.springberry.model.specific.java.JavaVmProperties;
-import it.giaquinto.springberry.model.specific.memory.MemoryProperties;
-import it.giaquinto.springberry.model.specific.os.OsProperties;
-import it.giaquinto.springberry.model.specific.runtime.RuntimeProperties;
-import it.giaquinto.springberry.model.specific.thread.ThreadProperties;
-
-import java.lang.management.ManagementFactory;
+import it.giaquinto.springberry.spring.bean.springberrybean.properties.ThreadProperties;
 
 public final class InstanceProperties {
 
@@ -34,7 +29,7 @@ public final class InstanceProperties {
         javaProperties = new JavaProperties();
         javaVendorProperties = new JavaVendorProperties();
         javaVmProperties = new JavaVmProperties();
-        memoryProperties = new MemoryProperties(level);
+        memoryProperties = new MemoryProperties();
         osProperties = new OsProperties();
         runtimeProperties = new RuntimeProperties();
         separatorProperties = new SeparatorProperties();

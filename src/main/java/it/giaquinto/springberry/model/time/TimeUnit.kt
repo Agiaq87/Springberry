@@ -1,7 +1,6 @@
-package it.giaquinto.springberry.model.time;
+package it.giaquinto.springberry.model.time
 
-public record TimeUnit(
-        long value,
-        long readableValue,
-        OrderMagnitudeTime orderMagnitudeTime
-) {}
+data class TimeUnit(private val value: Long, private val readableValue: Long, private val orderMagnitudeTime: OrderMagnitudeTime) {
+    val current: String
+        get() = "$readableValue ${orderMagnitudeTime.name}"
+}

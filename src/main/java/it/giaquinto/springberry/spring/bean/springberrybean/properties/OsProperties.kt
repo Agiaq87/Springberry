@@ -1,35 +1,11 @@
-package it.giaquinto.springberry.model.specific.os;
+package it.giaquinto.springberry.spring.bean.springberrybean.properties
 
-public class OsProperties {
+class OsProperties {
+    val arch: String
+        get() = System.getProperty("os.arch")
+    val name: String
+        get() = System.getProperty("os.name")
+    val version: String
+        get() = System.getProperty("os.version")
 
-    private final String arch;
-    private final String name;
-    private final String version;
-
-    public OsProperties() {
-        arch = System.getProperty("os.arch");
-        name = System.getProperty("os.name");
-        version = System.getProperty("os.version");
-    }
-
-    public String getArch() {
-        return arch;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getVersion() {
-        return version;
-    }
-
-    @Override
-    public String toString() {
-        return "OsProperties{" +
-                "arch='" + arch + '\'' +
-                ", name='" + name + '\'' +
-                ", version='" + version + '\'' +
-                '}';
-    }
 }

@@ -1,49 +1,28 @@
-package it.giaquinto.springberry.model.specific.java;
+package it.giaquinto.springberry.spring.bean.springberrybean.properties
 
-public final class JavaProperties {
+class JavaProperties {
+    val compiler: String?
+        get() = System.getProperty("java.compiler")
+    val home: String
+        get() = System.getProperty("java.home")
+    val classPath: String
+        get() = System.getProperty("java.class.path")
+    val runtimeVersion: String
+        get() = System.getProperty("java.runtime.version")
+    val version: String
+        get() = System.getProperty("java.version")
 
-    private final String compiler;
-    private final String home;
-    private final String path;
-    private final String runtime;
-    private final String version;
+    val vendor: String
+        get() = System.getProperty("java.vendor")
+    val vendorUrl: String
+        get() = System.getProperty("java.vendor.url")
 
-    public JavaProperties() {
-        compiler = System.getProperty("java.compiler");
-        home = System.getProperty("java.home");
-        path = System.getProperty("java.class.path");
-        version = System.getProperty("java.version");
-        runtime = System.getProperty("java.runtime.version");
-    }
-
-    public String getCompiler() {
-        return compiler;
-    }
-
-    public String getHome() {
-        return home;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public String getVersion() {
-        return version;
-    }
-
-    public String getRuntime() {
-        return runtime;
-    }
-
-    @Override
-    public String toString() {
-        return "JavaProperties{" +
-                "compiler='" + compiler + '\'' +
-                ", home='" + home + '\'' +
-                ", path='" + path + '\'' +
-                ", runtime='" + runtime + '\'' +
-                ", version='" + version + '\'' +
-                '}';
-    }
+    val vmInfo: String
+        get() = System.getProperty("java.vm.info")
+    val vmName: String
+        get() = System.getProperty("java.vm.name")
+    val vmVendor: String
+        get() = System.getProperty("java.vm.vendor")
+    val vmVersion: String
+        get() = System.getProperty("java.vm.version")
 }

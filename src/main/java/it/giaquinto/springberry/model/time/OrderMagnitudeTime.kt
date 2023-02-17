@@ -1,35 +1,31 @@
-package it.giaquinto.springberry.model.time;
+package it.giaquinto.springberry.model.time
 
-public enum OrderMagnitudeTime {
-    FEMTO,
-    PICO,
-    NANO,
-    MICRO,
-    MILLI,
-    SECOND,
-    KILO,
-    MEGA,
-    GIGA,
-    TERA,
-    PETA,
-    EXA,
-    ZETTA;
+enum class OrderMagnitudeTime {
+    FEMTO, PICO, NANO, MICRO, MILLI, SECOND, KILO, MEGA, GIGA, TERA, PETA, EXA, ZETTA , UNDEFINED;
 
-    public static OrderMagnitudeTime toNext(final OrderMagnitudeTime value) {
-        return switch (value) {
-            case FEMTO -> PICO;
-            case PICO -> NANO;
-            case NANO -> MICRO;
-            case MICRO -> MILLI;
-            case MILLI -> SECOND;
-            case SECOND -> KILO;
-            case KILO -> MEGA;
-            case MEGA -> GIGA;
-            case GIGA -> TERA;
-            case TERA -> TERA;
-            case PETA -> PETA;
-            case EXA -> ZETTA;
-            case ZETTA -> null;
-        };
+    companion object {
+        fun toNext(value: OrderMagnitudeTime): OrderMagnitudeTime =
+            when (value) {
+                FEMTO -> PICO
+                PICO -> NANO
+                NANO -> MICRO
+                MICRO -> MILLI
+                MILLI -> SECOND
+                SECOND -> KILO
+                KILO -> MEGA
+                MEGA -> GIGA
+                GIGA -> TERA
+                TERA -> TERA
+                PETA -> PETA
+                EXA -> ZETTA
+                ZETTA -> UNDEFINED
+                else -> UNDEFINED
+            }
+
+        fun hasNext(value: OrderMagnitudeTime): Boolean =
+            when(value) {
+                ZETTA -> false
+                else -> true
+            }
     }
 }

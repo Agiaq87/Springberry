@@ -34,7 +34,7 @@ public class SpringBerryLoggerComponent implements AsyncUncaughtExceptionHandler
 
     private SpringBerryLoggerComponent() {
         simpleDateFormat = new SimpleDateFormat();
-        timeUnit = TimeConverter.getInstance();
+        timeUnit = TimeConverter.INSTANCE;
         FileUtils.makeDirectory(directory);
         currentDate = new Date();
         outputFileWriter = FileUtils.makeFile(directory, filePattern, currentDate);
