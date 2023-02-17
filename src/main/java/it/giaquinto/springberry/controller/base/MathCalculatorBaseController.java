@@ -21,7 +21,7 @@ public final class MathCalculatorBaseController extends SpringBerryBaseControlle
         };
     }
 
-    @GetMapping(path = "math/to-hex/{value}")
+    /*@GetMapping(path = "math/to-hex/{value}")
     public String toHex(@PathVariable final String value) {
         try {
             return getMathUtils().toHex(Long.decode(value));
@@ -64,7 +64,6 @@ public final class MathCalculatorBaseController extends SpringBerryBaseControlle
         } catch (final NumberFormatException numberFormatException) {
             return null;
         }
-    }
-
+    }*/
 
 }

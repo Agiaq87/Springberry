@@ -20,12 +20,11 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class AboutController: SpringBerryController<HardwareSoftwareProperties> {
-    companion object {
-        const val uniqueRestRadix: RestRadix = "about"
-    }
+class AboutController : SpringBerryController<HardwareSoftwareProperties> {
 
-    private val hardwareSoftwareProperties: HardwareSoftwareProperties
+    private val hardwareSoftwareProperties: HardwareSoftwareProperties by lazy {
+        AnnotationConfigApplicationContext(SpringBerryConfiguration::class.java).getBean("hardwareSoftwareProperties") as HardwareSoftwareProperties
+    }
 
     override val identifier: Identifier
         get() = this.javaClass.packageName
@@ -33,12 +32,6 @@ class AboutController: SpringBerryController<HardwareSoftwareProperties> {
     override val uniqueRestRadix: RestRadix
         get() = AboutController.uniqueRestRadix
 
-
-    init {
-        AnnotationConfigApplicationContext(SpringBerryConfiguration::class.java).also {
-            hardwareSoftwareProperties = it.getBean("hardwareSoftwareProperties") as HardwareSoftwareProperties
-        }
-    }
 
     @GetMapping("${AboutController.uniqueRestRadix}/$radixControllerAcceptedRequest")
     override fun controllerAcceptedMethod(): Array<HttpRequest?> =
@@ -67,4 +60,8 @@ class AboutController: SpringBerryController<HardwareSoftwareProperties> {
 
     @GetMapping("${AboutController.uniqueRestRadix}/user")
     fun userProperties(): UserProperties = hardwareSoftwareProperties.userProperties
+
+    companion object {
+        const val uniqueRestRadix: RestRadix = "about"
+    }
 }

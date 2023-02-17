@@ -14,7 +14,7 @@ class ThreadProperties {
     val peakThreadCount: Int
     val threadCount: Int
     val totalStartedThreadCount: Long
-    private val threadsInfo: MutableMap<Long, ThreadInfo> = HashMap()
+    val threadsInfo: MutableMap<Long, ThreadInfo> = HashMap()
 
     init {
         ManagementFactory.getThreadMXBean().also {

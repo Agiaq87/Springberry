@@ -5,7 +5,7 @@ import it.giaquinto.springberry.spring.bean.springberrybean.properties.*
 import it.giaquinto.springberry.spring.configuration.Identifier
 
 class HardwareSoftwareProperties: SpringBerryBean {
-    override fun getId(): Identifier = this.javaClass.packageName
+    override fun packageIdentifier(): Identifier = this.javaClass.packageName
 
     val javaProperties: JavaProperties by lazy {
         JavaProperties()
