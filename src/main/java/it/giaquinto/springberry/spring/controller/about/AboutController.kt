@@ -1,5 +1,6 @@
 package it.giaquinto.springberry.spring.controller.about
 
+import it.giaquinto.springberry.model.http.HttpRequest
 import it.giaquinto.springberry.spring.bean.springberrybean.properties.ThreadProperties
 import it.giaquinto.springberry.spring.bean.springberrybean.properties.UserProperties
 import it.giaquinto.springberry.spring.bean.springberrybean.properties.SeparatorProperties
@@ -9,9 +10,11 @@ import it.giaquinto.springberry.spring.bean.springberrybean.HardwareSoftwareProp
 import it.giaquinto.springberry.spring.bean.springberrybean.properties.OsProperties
 import it.giaquinto.springberry.spring.bean.springberrybean.properties.RuntimeProperties
 import it.giaquinto.springberry.spring.configuration.Identifier
+import it.giaquinto.springberry.spring.configuration.Rest
 import it.giaquinto.springberry.spring.configuration.RestRadix
 import it.giaquinto.springberry.spring.configuration.SpringBerryConfiguration
 import it.giaquinto.springberry.spring.controller.SpringBerryController
+import it.giaquinto.springberry.spring.controller.SpringBerryController.Companion.radixControllerAcceptedRequest
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
@@ -30,11 +33,16 @@ class AboutController: SpringBerryController<HardwareSoftwareProperties> {
     override val uniqueRestRadix: RestRadix
         get() = AboutController.uniqueRestRadix
 
+
     init {
         AnnotationConfigApplicationContext(SpringBerryConfiguration::class.java).also {
             hardwareSoftwareProperties = it.getBean("hardwareSoftwareProperties") as HardwareSoftwareProperties
         }
     }
+
+    @GetMapping("${AboutController.uniqueRestRadix}/$radixControllerAcceptedRequest")
+    override fun controllerAcceptedMethod(): Array<HttpRequest?> =
+        super.controllerAcceptedMethod()
 
     @GetMapping(AboutController.uniqueRestRadix)
     override fun defaultResponse() = hardwareSoftwareProperties
