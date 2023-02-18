@@ -1,8 +1,8 @@
 package it.giaquinto.springberry.controller.base;
 
 import it.giaquinto.springberry.controller.SpringBerryBaseController;
-import it.giaquinto.springberry.model.http.HttpRequest;
-import it.giaquinto.springberry.model.math.NumberRepresentation;
+import it.giaquinto.springberry.spring.model.http.HttpRequest;
+import it.giaquinto.springberry.spring.model.math.NumberRepresentation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;

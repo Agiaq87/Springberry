@@ -1,9 +1,9 @@
-package it.giaquinto.springberry.model.http
+package it.giaquinto.springberry.spring.model.http
 
 import org.springframework.web.bind.annotation.RequestMethod
 
 enum class HttpRequest {
-    GET, HEAD, POST, PUT, DELETE, OPTIONS, TRACE, PATCH, UNDEFINED;
+    GET, HEAD, POST, PUT, DELETE, OPTIONS, TRACE, PATCH;
 
     companion object {
         fun get(toConvert: HttpRequest): RequestMethod? =
@@ -16,7 +16,6 @@ enum class HttpRequest {
                 OPTIONS -> RequestMethod.OPTIONS
                 TRACE -> RequestMethod.TRACE
                 PATCH -> RequestMethod.PATCH
-                else -> null
             }
     }
 }

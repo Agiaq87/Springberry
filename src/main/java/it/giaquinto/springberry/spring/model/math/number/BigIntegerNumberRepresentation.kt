@@ -1,6 +1,6 @@
-package it.giaquinto.springberry.model.math.number
+package it.giaquinto.springberry.spring.model.math.number
 
-import it.giaquinto.springberry.model.math.NumberRepresentation
+import it.giaquinto.springberry.spring.model.math.NumberRepresentation
 import java.math.BigInteger
 import java.util.*
 

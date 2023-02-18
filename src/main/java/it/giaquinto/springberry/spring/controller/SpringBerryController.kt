@@ -1,9 +1,10 @@
 package it.giaquinto.springberry.spring.controller
 
-import it.giaquinto.springberry.model.http.HttpRequest
+import it.giaquinto.springberry.spring.model.http.HttpRequest
 import it.giaquinto.springberry.spring.configuration.Identifier
 import it.giaquinto.springberry.spring.configuration.Rest
 import it.giaquinto.springberry.spring.configuration.RestRadix
+import it.giaquinto.springberry.spring.model.http.ApiResult
 
 interface SpringBerryController<T> {
 
@@ -13,11 +14,10 @@ interface SpringBerryController<T> {
 
 
 
-    fun defaultResponse(): T
+    fun defaultResponse(): ApiResult<T>
 
-    fun controllerAcceptedMethod(): Array<HttpRequest?> = arrayOf(
-        HttpRequest.GET
-    )
+    fun controllerAcceptedMethod(): ApiResult<Array<HttpRequest?>?> =
+        ApiResult.Success(_data = arrayOf(HttpRequest.GET))
 
     companion object {
         const val radixControllerAcceptedRequest: Rest = "httpAcceptedMethod"

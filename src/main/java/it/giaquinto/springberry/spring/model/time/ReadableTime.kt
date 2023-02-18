@@ -1,4 +1,4 @@
-package it.giaquinto.springberry.model.time
+package it.giaquinto.springberry.spring.model.time
 
 data class ReadableTime(val seconds: Long) {
     val minutes: Long = seconds / 60

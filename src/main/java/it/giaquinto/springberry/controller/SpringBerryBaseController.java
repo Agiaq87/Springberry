@@ -1,6 +1,6 @@
 package it.giaquinto.springberry.controller;
 
-import it.giaquinto.springberry.model.http.HttpRequest;
+import it.giaquinto.springberry.spring.model.http.HttpRequest;
 import it.giaquinto.springberry.component.MathComponent;
 import it.giaquinto.springberry.component.StringComponent;
 import org.slf4j.Logger;

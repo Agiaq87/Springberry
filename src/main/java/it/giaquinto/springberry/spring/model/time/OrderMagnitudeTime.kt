@@ -1,4 +1,4 @@
-package it.giaquinto.springberry.model.time
+package it.giaquinto.springberry.spring.model.time
 
 enum class OrderMagnitudeTime {
     FEMTO, PICO, NANO, MICRO, MILLI, SECOND, KILO, MEGA, GIGA, TERA, PETA, EXA, ZETTA , UNDEFINED;

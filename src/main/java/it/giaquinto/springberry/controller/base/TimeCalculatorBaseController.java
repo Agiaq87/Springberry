@@ -1,8 +1,8 @@
 package it.giaquinto.springberry.controller.base;
 
 import it.giaquinto.springberry.controller.SpringBerryBaseController;
-import it.giaquinto.springberry.model.http.HttpRequest;
-import it.giaquinto.springberry.model.time.ReadableTime;
+import it.giaquinto.springberry.spring.model.http.HttpRequest;
+import it.giaquinto.springberry.spring.model.time.ReadableTime;
 import it.giaquinto.springberry.utils.time.TimeConverter;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

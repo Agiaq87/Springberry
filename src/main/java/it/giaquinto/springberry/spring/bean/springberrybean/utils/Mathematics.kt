@@ -1,7 +1,7 @@
 package it.giaquinto.springberry.spring.bean.springberrybean.utils
 
-import it.giaquinto.springberry.model.math.NumberRepresentation
-import it.giaquinto.springberry.model.math.number.BigIntegerNumberRepresentation
+import it.giaquinto.springberry.spring.model.math.NumberRepresentation
+import it.giaquinto.springberry.spring.model.math.number.BigIntegerNumberRepresentation
 import it.giaquinto.springberry.spring.bean.SpringBerryBean
 import it.giaquinto.springberry.spring.configuration.Identifier
 import java.math.BigInteger

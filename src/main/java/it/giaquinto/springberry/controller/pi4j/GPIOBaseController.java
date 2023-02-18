@@ -3,7 +3,7 @@ package it.giaquinto.springberry.controller.pi4j;
 import com.pi4j.provider.Provider;
 import it.giaquinto.springberry.component.SpringBerryLoggerComponent;
 import it.giaquinto.springberry.controller.SpringBerryPi4JBaseController;
-import it.giaquinto.springberry.model.http.HttpRequest;
+import it.giaquinto.springberry.spring.model.http.HttpRequest;
 import it.giaquinto.springberry.model.log.LogMessageFactory;
 import it.giaquinto.springberry.model.raspberry.pin.RaspberryEnumPin;
 import org.springframework.web.bind.annotation.GetMapping;

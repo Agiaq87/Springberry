@@ -1,4 +1,4 @@
-package it.giaquinto.springberry.model.math
+package it.giaquinto.springberry.spring.model.math
 
 interface NumberRepresentation {
     val binary: String?

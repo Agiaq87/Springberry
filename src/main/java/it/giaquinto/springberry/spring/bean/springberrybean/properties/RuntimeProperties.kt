@@ -1,7 +1,7 @@
 package it.giaquinto.springberry.spring.bean.springberrybean.properties
 
-import it.giaquinto.springberry.model.time.OrderMagnitudeTime
-import it.giaquinto.springberry.model.time.TimeUnit
+import it.giaquinto.springberry.spring.model.time.OrderMagnitudeTime
+import it.giaquinto.springberry.spring.model.time.TimeUnit
 import it.giaquinto.springberry.utils.time.TimeConverter
 import java.lang.management.ManagementFactory
 

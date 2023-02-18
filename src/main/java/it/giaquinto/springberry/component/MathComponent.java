@@ -1,8 +1,8 @@
 package it.giaquinto.springberry.component;
 
-import it.giaquinto.springberry.model.math.number.BigIntegerNumberRepresentation;
-import it.giaquinto.springberry.model.math.number.LongNumberRepresentation;
-import it.giaquinto.springberry.model.math.NumberRepresentation;
+import it.giaquinto.springberry.spring.model.math.number.BigIntegerNumberRepresentation;
+import it.giaquinto.springberry.spring.model.math.number.LongNumberRepresentation;
+import it.giaquinto.springberry.spring.model.math.NumberRepresentation;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
