@@ -54,7 +54,7 @@ class MathController : SpringBerryController<Mathematics> {
     fun toAllBase(@PathVariable value: String?): List<Any?> =
         listOf(
             try {
-                mathematics.toAllBase(value?.toBigInteger())
+                value?.toBigInteger()?.let { mathematics.toAllBase(it) } ?: run { "Not a number" }
             } catch (_: NumberFormatException) {
                 null
             }
@@ -63,13 +63,21 @@ class MathController : SpringBerryController<Mathematics> {
     @GetMapping("${MathController.uniqueRestRadix}/factorial/{value}")
     fun factorial(@PathVariable value: String?): List<Any?> =
         listOf(
-            value?.toBigInteger()?.let { mathematics.factorial(it) }
+            try {
+                value?.toBigInteger()?.let { mathematics.factorial(it) } ?: run { "Not a number" }
+            } catch (_: NumberFormatException) {
+                null
+            }
         )
 
     @GetMapping("${MathController.uniqueRestRadix}/sqrt/{value}")
     fun sqrt(@PathVariable value: String?): List<Any?> =
         listOf(
-            value?.toBigInteger()?.let { mathematics.sqrt(it) }
+            try {
+                value?.toBigInteger()?.let { mathematics.sqrt(it) } ?: run { "Not a number" }
+            } catch (_: NumberFormatException) {
+                null
+            }
         )
 
     companion object {

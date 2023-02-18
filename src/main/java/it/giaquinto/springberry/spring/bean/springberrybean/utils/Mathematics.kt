@@ -14,11 +14,7 @@ class Mathematics: SpringBerryBean {
 
     fun toBinary(decode: Long): String = java.lang.Long.toBinaryString(decode)
 
-    fun toAllBase(decode: BigInteger?): NumberRepresentation = decode?.let {
-        BigIntegerNumberRepresentation(it)
-    } ?: run {
-        BigIntegerNumberRepresentation(BigInteger.valueOf(-1))
-    }
+    fun toAllBase(decode: BigInteger): NumberRepresentation = BigIntegerNumberRepresentation(decode)
 
     fun factorial(passed: BigInteger): NumberRepresentation {
         var value = passed

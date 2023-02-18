@@ -26,7 +26,7 @@ public class SpringBerryLoggerComponent implements AsyncUncaughtExceptionHandler
 
     private final Logger logger = LoggerFactory.getLogger("SpringBerry");
     private final SimpleDateFormat simpleDateFormat;
-    private TimeConverter timeUnit;
+    private final TimeConverter timeUnit;
     private PrintWriter outputFileWriter;
     private Date currentDate;
     private LogMessage lastLogMessage;
