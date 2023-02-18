@@ -7,7 +7,7 @@ import it.giaquinto.springberry.spring.configuration.RestRadix
 import it.giaquinto.springberry.spring.configuration.SpringBerryConfiguration
 import it.giaquinto.springberry.spring.controller.SpringBerryController
 import it.giaquinto.springberry.spring.controller.SpringBerryController.Companion.radixControllerAcceptedRequest
-import it.giaquinto.springberry.spring.model.http.ApiResult
+import it.giaquinto.springberry.spring.model.api.ApiResult
 import it.giaquinto.springberry.spring.model.http.HttpRequest
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.web.bind.annotation.GetMapping

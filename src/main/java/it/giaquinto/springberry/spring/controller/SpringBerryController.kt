@@ -1,10 +1,10 @@
 package it.giaquinto.springberry.spring.controller
 
-import it.giaquinto.springberry.spring.model.http.HttpRequest
 import it.giaquinto.springberry.spring.configuration.Identifier
 import it.giaquinto.springberry.spring.configuration.Rest
 import it.giaquinto.springberry.spring.configuration.RestRadix
-import it.giaquinto.springberry.spring.model.http.ApiResult
+import it.giaquinto.springberry.spring.model.api.ApiResult
+import it.giaquinto.springberry.spring.model.http.HttpRequest
 
 interface SpringBerryController<T> {
 
