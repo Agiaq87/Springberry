@@ -1,7 +1,6 @@
 package it.giaquinto.springberry.spring.model.math.number
 
 import it.giaquinto.springberry.spring.model.math.NumberRepresentation
-import java.util.*
 
 class LongNumberRepresentation(defaultBase: Long) : NumberRepresentation {
     override val binary: String = java.lang.Long.toBinaryString(defaultBase)

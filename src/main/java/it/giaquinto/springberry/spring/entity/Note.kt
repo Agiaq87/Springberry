@@ -6,7 +6,7 @@ import jakarta.persistence.Id
 import java.sql.Timestamp
 
 @Entity
-class Note() {
+class Note {
     @Id
     var id: Long = 0
 

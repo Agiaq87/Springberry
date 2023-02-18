@@ -6,7 +6,7 @@ enum class HttpRequest {
     GET, HEAD, POST, PUT, DELETE, OPTIONS, TRACE, PATCH;
 
     companion object {
-        fun get(toConvert: HttpRequest): RequestMethod? =
+        fun get(toConvert: HttpRequest): RequestMethod =
             when (toConvert) {
                 GET -> RequestMethod.GET
                 HEAD -> RequestMethod.HEAD
