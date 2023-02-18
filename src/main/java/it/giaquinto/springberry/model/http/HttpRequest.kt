@@ -1,28 +1,22 @@
-package it.giaquinto.springberry.model.http;
+package it.giaquinto.springberry.model.http
 
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestMethod
 
-public enum HttpRequest {
-    GET,
-    HEAD,
-    POST,
-    PUT,
-    DELETE,
-    OPTIONS,
-    TRACE,
-    PATCH;
+enum class HttpRequest {
+    GET, HEAD, POST, PUT, DELETE, OPTIONS, TRACE, PATCH, UNDEFINED;
 
-
-    public static RequestMethod get(final HttpRequest toConvert) {
-        return switch (toConvert) {
-            case GET -> RequestMethod.GET;
-            case HEAD -> RequestMethod.HEAD;
-            case POST -> RequestMethod.POST;
-            case PUT -> RequestMethod.PUT;
-            case DELETE -> RequestMethod.DELETE;
-            case OPTIONS -> RequestMethod.OPTIONS;
-            case TRACE -> RequestMethod.TRACE;
-            case PATCH -> RequestMethod.PATCH;
-        };
+    companion object {
+        fun get(toConvert: HttpRequest): RequestMethod? =
+            when (toConvert) {
+                GET -> RequestMethod.GET
+                HEAD -> RequestMethod.HEAD
+                POST -> RequestMethod.POST
+                PUT -> RequestMethod.PUT
+                DELETE -> RequestMethod.DELETE
+                OPTIONS -> RequestMethod.OPTIONS
+                TRACE -> RequestMethod.TRACE
+                PATCH -> RequestMethod.PATCH
+                else -> null
+            }
     }
 }
