@@ -1,8 +1,8 @@
 package it.giaquinto.springberry.spring.controller.utils
 
-import it.giaquinto.springberry.spring.annotation.SpringBerryLoggerIsListening
-import it.giaquinto.springberry.spring.configuration.Identifier
-import it.giaquinto.springberry.spring.configuration.RestRadix
+import it.giaquinto.springberry.spring.Identifier
+import it.giaquinto.springberry.spring.RestRadix
+import it.giaquinto.springberry.spring.annotation.SpringBerryRestController
 import it.giaquinto.springberry.spring.controller.SpringBerryController
 import it.giaquinto.springberry.spring.entity.Note
 import it.giaquinto.springberry.spring.model.api.ApiResult
@@ -16,8 +16,7 @@ import java.util.*
 /**
  * Template controller
  */
-@RestController
-@SpringBerryLoggerIsListening
+@SpringBerryRestController
 class NoteController : SpringBerryController<List<Note?>?>() {
 
     @Autowired

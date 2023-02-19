@@ -1,6 +1,6 @@
-package it.giaquinto.springberry.spring.model.logger
+package it.giaquinto.springberry.common.logger.model
 
-import it.giaquinto.springberry.utils.time.TimeConverter
+import it.giaquinto.springberry.spring.utils.time.TimeConverter
 
 sealed class LogMessage(
     val message: String,

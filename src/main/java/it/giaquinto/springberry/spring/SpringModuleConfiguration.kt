@@ -1,4 +1,4 @@
-package it.giaquinto.springberry.spring.configuration
+package it.giaquinto.springberry.spring
 
 typealias Identifier = String
 typealias RestRadix = String

@@ -1,6 +1,6 @@
-package it.giaquinto.springberry.utils.file
+package it.giaquinto.springberry.spring.utils.file
 
-import it.giaquinto.springberry.spring.model.logger.LogMessage
+import it.giaquinto.springberry.common.logger.model.LogMessage
 import java.io.File
 import java.io.FileWriter
 import java.nio.file.Files

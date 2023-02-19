@@ -1,9 +1,9 @@
 package it.giaquinto.springberry.spring.model.api
 
+import it.giaquinto.springberry.common.logger.model.LogMessage
 import it.giaquinto.springberry.spring.model.SpringBerryModel
 import it.giaquinto.springberry.spring.model.http.HttpStatusCode
-import it.giaquinto.springberry.spring.model.logger.LogMessage
-import it.giaquinto.springberry.utils.time.TimeConverter
+import it.giaquinto.springberry.spring.utils.time.TimeConverter
 
 sealed class ApiResult<out T>(
     val name: String = "SpringBerry",

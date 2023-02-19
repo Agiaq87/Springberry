@@ -1,16 +1,15 @@
 package it.giaquinto.springberry.spring.controller
 
-import it.giaquinto.springberry.spring.component.SpringBerryLoggerBean
-import it.giaquinto.springberry.spring.configuration.Identifier
-import it.giaquinto.springberry.spring.configuration.Rest
-import it.giaquinto.springberry.spring.configuration.RestRadix
+import it.giaquinto.springberry.common.logger.SpringBerryLoggerBean
+import it.giaquinto.springberry.spring.Identifier
+import it.giaquinto.springberry.spring.Rest
+import it.giaquinto.springberry.spring.RestRadix
 import it.giaquinto.springberry.spring.model.SpringBerryModel
 import it.giaquinto.springberry.spring.model.api.ApiResult
 import it.giaquinto.springberry.spring.model.http.HttpRequest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import org.springframework.beans.factory.annotation.Autowired
 
 abstract class SpringBerryController<T> {
 
@@ -18,8 +17,7 @@ abstract class SpringBerryController<T> {
 
     abstract val uniqueRestRadix: RestRadix
 
-    @Autowired
-    lateinit var springBerryLoggerBean: SpringBerryLoggerBean
+    val springBerryLoggerBean: SpringBerryLoggerBean = SpringBerryLoggerBean
 
     abstract fun defaultResponse(): ApiResult<T>
 

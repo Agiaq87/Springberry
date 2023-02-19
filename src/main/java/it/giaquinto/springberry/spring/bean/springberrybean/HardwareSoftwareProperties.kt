@@ -1,8 +1,8 @@
 package it.giaquinto.springberry.spring.bean.springberrybean
 
+import it.giaquinto.springberry.spring.Identifier
 import it.giaquinto.springberry.spring.bean.SpringBerryBean
 import it.giaquinto.springberry.spring.bean.springberrybean.properties.*
-import it.giaquinto.springberry.spring.configuration.Identifier
 
 class HardwareSoftwareProperties: SpringBerryBean {
     override fun packageIdentifier(): Identifier = this.javaClass.packageName

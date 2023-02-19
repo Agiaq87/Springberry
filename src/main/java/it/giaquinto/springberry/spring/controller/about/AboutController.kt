@@ -1,9 +1,9 @@
 package it.giaquinto.springberry.spring.controller.about
 
+import it.giaquinto.springberry.spring.Identifier
+import it.giaquinto.springberry.spring.RestRadix
 import it.giaquinto.springberry.spring.bean.springberrybean.HardwareSoftwareProperties
 import it.giaquinto.springberry.spring.bean.springberrybean.properties.*
-import it.giaquinto.springberry.spring.configuration.Identifier
-import it.giaquinto.springberry.spring.configuration.RestRadix
 import it.giaquinto.springberry.spring.configuration.SpringBerryConfiguration
 import it.giaquinto.springberry.spring.controller.SpringBerryController
 import it.giaquinto.springberry.spring.model.api.ApiResult

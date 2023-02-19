@@ -1,8 +1,8 @@
 package it.giaquinto.springberry.spring.controller.utils
 
+import it.giaquinto.springberry.spring.Identifier
+import it.giaquinto.springberry.spring.RestRadix
 import it.giaquinto.springberry.spring.bean.springberrybean.utils.Mathematics
-import it.giaquinto.springberry.spring.configuration.Identifier
-import it.giaquinto.springberry.spring.configuration.RestRadix
 import it.giaquinto.springberry.spring.configuration.SpringBerryConfiguration
 import it.giaquinto.springberry.spring.controller.SpringBerryController
 import it.giaquinto.springberry.spring.model.api.ApiResult

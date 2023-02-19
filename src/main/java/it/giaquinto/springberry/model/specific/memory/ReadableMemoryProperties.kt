@@ -1,6 +1,6 @@
 package it.giaquinto.springberry.model.specific.memory
 
-import it.giaquinto.springberry.utils.memory.UnitMemoryConverter
+import it.giaquinto.springberry.spring.utils.memory.UnitMemoryConverter
 import java.lang.management.MemoryUsage
 
 data class ReadableMemoryProperties(

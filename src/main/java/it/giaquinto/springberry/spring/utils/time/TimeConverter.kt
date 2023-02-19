@@ -1,4 +1,4 @@
-package it.giaquinto.springberry.utils.time
+package it.giaquinto.springberry.spring.utils.time
 
 import it.giaquinto.springberry.spring.model.time.OrderMagnitudeTime
 import it.giaquinto.springberry.spring.model.time.ReadableTime

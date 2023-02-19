@@ -1,4 +1,4 @@
-package it.giaquinto.springberry.utils.memory
+package it.giaquinto.springberry.spring.utils.memory
 
 object UnitMemoryConverter {
     fun toKiloByte(byteValue: Long): Long {
