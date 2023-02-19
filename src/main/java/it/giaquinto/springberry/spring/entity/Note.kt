@@ -1,11 +1,13 @@
 package it.giaquinto.springberry.spring.entity
 
+import it.giaquinto.springberry.spring.annotation.SpringBerryModelBuilder
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.Id
 import java.sql.Timestamp
 
 @Entity
+@SpringBerryModelBuilder
 class Note {
     @Id
     var id: Long = 0
