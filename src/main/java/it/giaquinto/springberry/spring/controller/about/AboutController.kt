@@ -6,7 +6,6 @@ import it.giaquinto.springberry.spring.configuration.Identifier
 import it.giaquinto.springberry.spring.configuration.RestRadix
 import it.giaquinto.springberry.spring.configuration.SpringBerryConfiguration
 import it.giaquinto.springberry.spring.controller.SpringBerryController
-import it.giaquinto.springberry.spring.controller.SpringBerryController.Companion.radixControllerAcceptedRequest
 import it.giaquinto.springberry.spring.model.api.ApiResult
 import it.giaquinto.springberry.spring.model.http.HttpRequest
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
@@ -31,7 +30,7 @@ import org.springframework.web.bind.annotation.RestController
  *
  */
 @RestController
-class AboutController : SpringBerryController<HardwareSoftwareProperties> {
+class AboutController : SpringBerryController<HardwareSoftwareProperties>() {
 
     private val hardwareSoftwareProperties: HardwareSoftwareProperties by lazy {
         AnnotationConfigApplicationContext(SpringBerryConfiguration::class.java).getBean("hardwareSoftwareProperties") as HardwareSoftwareProperties

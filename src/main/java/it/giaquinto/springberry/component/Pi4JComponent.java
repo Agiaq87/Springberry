@@ -12,12 +12,10 @@ import com.pi4j.plugin.pigpio.provider.serial.PiGpioSerialProvider;
 import com.pi4j.plugin.pigpio.provider.spi.PiGpioSpiProvider;
 import com.pi4j.plugin.raspberrypi.platform.RaspberryPiPlatform;
 import com.pi4j.provider.Provider;
-import it.giaquinto.springberry.model.log.LogMessage;
 import it.giaquinto.springberry.model.raspberry.component.RaspBerryLedComponent;
 import it.giaquinto.springberry.model.raspberry.pin.IncorrectPhysicalPinSpecifiedException;
 import it.giaquinto.springberry.model.raspberry.pin.RaspberryEnumPin;
 import it.giaquinto.springberry.model.raspberry.pin.RaspberryPin;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
@@ -32,15 +30,12 @@ import java.util.concurrent.CompletableFuture;
 @Lazy
 @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class Pi4JComponent {
-    private final SpringBerryLoggerComponent logger;
     private final PiGpio piGpio;
     private final Context pi4j;
 
     private Map<Integer, RaspberryPin> physicalPinMap;
 
-    @Autowired
-    public Pi4JComponent(final SpringBerryLoggerComponent logger) {
-        this.logger = logger;
+    public Pi4JComponent() {
         piGpio = PiGpio.newNativeInstance();
         pi4j = Pi4J
                 .newContextBuilder()
@@ -65,7 +60,6 @@ public class Pi4JComponent {
         makeMap().thenAccept(
                 map -> {
                     physicalPinMap = map;
-                    logger.writeLog(new LogMessage("Map of pins correctly created"));
                 }
         );
 

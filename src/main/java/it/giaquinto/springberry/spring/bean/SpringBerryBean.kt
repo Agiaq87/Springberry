@@ -6,5 +6,4 @@ import it.giaquinto.springberry.spring.configuration.Identifier
 interface SpringBerryBean {
     fun packageIdentifier(): Identifier
 
-
 }

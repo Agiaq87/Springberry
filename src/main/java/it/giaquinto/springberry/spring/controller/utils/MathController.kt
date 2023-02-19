@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController
  * Simple controller for execute math operation
  */
 @RestController
-class MathController : SpringBerryController<Mathematics> {
+class MathController : SpringBerryController<Mathematics>() {
 
     private val mathematics: Mathematics by lazy {
         AnnotationConfigApplicationContext(SpringBerryConfiguration::class.java).getBean("mathUtils") as Mathematics

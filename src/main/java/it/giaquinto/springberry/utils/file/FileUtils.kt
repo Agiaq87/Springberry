@@ -1,26 +1,25 @@
-package it.giaquinto.springberry.utils.file;
+package it.giaquinto.springberry.utils.file
 
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.LinkOption;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.io.FileWriter
+import java.io.IOException
+import java.io.PrintWriter
+import java.nio.file.Files
+import java.nio.file.LinkOption
+import java.nio.file.Path
+import java.nio.file.Paths
 
-public abstract class FileUtils {
-
-    public static Path makeDirectory(final String path) {
+object FileUtils {
+    @JvmStatic
+    fun makeDirectory(path: String): Path? =
         try {
-            final Path tmp  = Paths.get(path);
-            if (Files.notExists(tmp, LinkOption.NOFOLLOW_LINKS)) {
-                Files.createDirectory(tmp);
+            Paths.get(path).apply {
+                if (Files.notExists(this, LinkOption.NOFOLLOW_LINKS)) {
+                    Files.createDirectory(this)
+                }
             }
-            return tmp;
-        } catch (final Exception ignored) {
-            return null;
+        } catch (ignored: Exception) {
+            null
         }
-    }
 
     /**
      * The name of file consist in date
@@ -28,22 +27,21 @@ public abstract class FileUtils {
      * @param datePattern
      * @return
      */
-    public static PrintWriter makeFile(final String path, final String datePattern, final Date date) {
-        final SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
-        simpleDateFormat.applyPattern(datePattern);
-
-        try {
-            return new PrintWriter(
-                    new FileWriter(
-                            String.format(
-                                    "%s/%s.log", path, simpleDateFormat.format(date)
-                            ),
-                            true
-                    )
-            );
-        } catch (IOException e) {
-            return null;
+    @JvmStatic
+    fun makeFile(path: String, datePattern: String, currentDate: String): PrintWriter? {
+        return try {
+            PrintWriter(
+                FileWriter(
+                    String.format(
+                        "%s/%s.log",
+                        path,
+                        currentDate
+                    ),
+                    true
+                )
+            )
+        } catch (e: IOException) {
+            null
         }
     }
-
 }
