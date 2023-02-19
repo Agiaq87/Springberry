@@ -1,7 +1,6 @@
 package it.giaquinto.springberry.spring.configuration
 
 import it.giaquinto.springberry.spring.bean.springberrybean.HardwareSoftwareProperties
-import it.giaquinto.springberry.spring.bean.springberrybean.logger.SpringBerryLoggerBean
 import it.giaquinto.springberry.spring.bean.springberrybean.utils.Mathematics
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -14,6 +13,4 @@ open class SpringBerryConfiguration {
     @Bean
     open fun mathUtils(): Mathematics = Mathematics()
 
-    @Bean
-    open fun springBerryLogger(): SpringBerryLoggerBean = SpringBerryLoggerBean()
 }

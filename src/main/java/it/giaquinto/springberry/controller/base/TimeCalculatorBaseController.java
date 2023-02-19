@@ -23,7 +23,7 @@ public final class TimeCalculatorBaseController extends SpringBerryBaseControlle
     }
     @GetMapping(path= "time/current-date-time")
     public String currentDateTime() {
-        return TimeConverter.now();
+        return TimeConverter.now(true);
     }
 
     @GetMapping(path= "time/convert-seconds-to-minute/{seconds}")

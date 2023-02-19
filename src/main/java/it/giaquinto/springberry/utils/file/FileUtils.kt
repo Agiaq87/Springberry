@@ -1,15 +1,20 @@
 package it.giaquinto.springberry.utils.file
 
+import it.giaquinto.springberry.spring.model.logger.LogMessage
+import java.io.File
 import java.io.FileWriter
-import java.io.IOException
-import java.io.PrintWriter
 import java.nio.file.Files
 import java.nio.file.LinkOption
 import java.nio.file.Path
 import java.nio.file.Paths
 
 object FileUtils {
-    @JvmStatic
+    fun makeWriter(file: File): FileWriter =
+        FileWriter(file, true)
+
+    fun makeFile(path: String): File =
+        File(path)
+
     fun makeDirectory(path: String): Path? =
         try {
             Paths.get(path).apply {
@@ -20,28 +25,11 @@ object FileUtils {
         } catch (ignored: Exception) {
             null
         }
+}
 
-    /**
-     * The name of file consist in date
-     * @param path
-     * @param datePattern
-     * @return
-     */
-    @JvmStatic
-    fun makeFile(path: String, datePattern: String, currentDate: String): PrintWriter? {
-        return try {
-            PrintWriter(
-                FileWriter(
-                    String.format(
-                        "%s/%s.log",
-                        path,
-                        currentDate
-                    ),
-                    true
-                )
-            )
-        } catch (e: IOException) {
-            null
-        }
-    }
+fun FileWriter.write(logMessage: LogMessage) {
+    write(
+        "[${logMessage.logOut}] ${logMessage.date} ${logMessage.message}\n"
+    )
+    flush()
 }

@@ -64,11 +64,13 @@ class MathController : SpringBerryController<Mathematics>() {
 
     @GetMapping("${MathController.uniqueRestRadix}/factorial/{value}")
     fun factorial(@PathVariable value: String?): ApiResult<NumberRepresentation?> =
-        try {
-            ApiResult.Success(value?.toBigInteger()?.let { mathematics.factorial(it) } ?: run { null })
-        } catch (_: NumberFormatException) {
-            ApiResult.Error("Not a number")
-        }
+        propagateApiResult(
+            try {
+                ApiResult.Success(value?.toBigInteger()?.let { mathematics.factorial(it) } ?: run { null })
+            } catch (_: NumberFormatException) {
+                ApiResult.Error("Not a number")
+            }
+        )
 
     @GetMapping("${MathController.uniqueRestRadix}/sqrt/{value}")
     fun sqrt(@PathVariable value: String?): ApiResult<NumberRepresentation?> =

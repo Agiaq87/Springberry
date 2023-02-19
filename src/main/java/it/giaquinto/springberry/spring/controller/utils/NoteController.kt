@@ -1,5 +1,6 @@
 package it.giaquinto.springberry.spring.controller.utils
 
+import it.giaquinto.springberry.spring.annotation.SpringBerryLoggerIsListening
 import it.giaquinto.springberry.spring.configuration.Identifier
 import it.giaquinto.springberry.spring.configuration.RestRadix
 import it.giaquinto.springberry.spring.controller.SpringBerryController
@@ -16,6 +17,7 @@ import java.util.*
  * Template controller
  */
 @RestController
+@SpringBerryLoggerIsListening
 class NoteController : SpringBerryController<List<Note?>?>() {
 
     @Autowired
@@ -74,13 +76,15 @@ class NoteController : SpringBerryController<List<Note?>?>() {
 
     @PostMapping(NoteController.uniqueRestRadix)
     fun create(@RequestBody note: Note?): ApiResult<Note?> =
-        note?.let {
-            ApiResult.Success(
-                noteRepository.save(it)
-            )
-        } ?: run {
-            ApiResult.Error("Incorrect value, expected JSON Note")
-        }
+        propagateApiResult(
+            note?.let {
+                ApiResult.Success(
+                    noteRepository.save(it)
+                )
+            } ?: run {
+                ApiResult.Error("Incorrect value, expected JSON Note")
+            }
+        )
 
 
     companion object {

@@ -52,7 +52,12 @@ object TimeConverter {
     private val standardDateTimeFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy")
 
     @JvmStatic
-    fun now(): String {
-        return LocalDateTime.now().format(standardDateTimeFormatter)
-    }
+    private val standardDateFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+
+    @JvmStatic
+    fun now(usingTime: Boolean = true): String =
+        if (usingTime)
+            LocalDateTime.now().format(standardDateTimeFormatter)
+        else
+            LocalDateTime.now().format(standardDateFormatter)
 }
