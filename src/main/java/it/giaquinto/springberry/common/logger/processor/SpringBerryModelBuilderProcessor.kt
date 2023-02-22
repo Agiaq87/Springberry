@@ -20,7 +20,7 @@ class SpringBerryModelBuilderProcessor : AbstractProcessor() {
         return true
     }
 
-    private fun generateBuilderFile(e: Element) = with(e) {
+    fun generateBuilderFile(e: Element) = with(e) {
         val className: String = e.simpleName.toString()
         val packageName: String = e.enclosingElement.toString()
         val builderClassName = "${simpleName}Builder"

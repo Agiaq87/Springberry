@@ -1,8 +1,6 @@
 package it.giaquinto.springberry.model.raspberry.pin;
 
-import it.giaquinto.springberry.model.raspberry.Pin;
-
-public enum RaspberryEnumPin implements Pin {
+public enum RaspberryEnumPin /*implements Pin*/ {
     SDA1(2),
     SCL1(5),
     D4(4),

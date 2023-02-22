@@ -13,9 +13,8 @@ import com.pi4j.plugin.pigpio.provider.spi.PiGpioSpiProvider;
 import com.pi4j.plugin.raspberrypi.platform.RaspberryPiPlatform;
 import com.pi4j.provider.Provider;
 import it.giaquinto.springberry.model.raspberry.component.RaspBerryLedComponent;
-import it.giaquinto.springberry.model.raspberry.pin.IncorrectPhysicalPinSpecifiedException;
+import it.giaquinto.springberry.model.raspberry.pin.OldRaspberryPin;
 import it.giaquinto.springberry.model.raspberry.pin.RaspberryEnumPin;
-import it.giaquinto.springberry.model.raspberry.pin.RaspberryPin;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
@@ -33,7 +32,7 @@ public class Pi4JComponent {
     private final PiGpio piGpio;
     private final Context pi4j;
 
-    private Map<Integer, RaspberryPin> physicalPinMap;
+    private Map<Integer, OldRaspberryPin> physicalPinMap;
 
     public Pi4JComponent() {
         piGpio = PiGpio.newNativeInstance();
@@ -90,18 +89,18 @@ public class Pi4JComponent {
     }
 
     @Async
-    CompletableFuture<TreeMap<Integer, RaspberryPin>> makeMap() {
+    CompletableFuture<TreeMap<Integer, OldRaspberryPin>> makeMap() {
         return CompletableFuture.supplyAsync(
                 () -> {
-                    final TreeMap<Integer, RaspberryPin> temp = new TreeMap<>();
+                    final TreeMap<Integer, OldRaspberryPin> temp = new TreeMap<>();
 
-                    for (int i = 0; i <= 40; i++) {
+                    /*for (int i = 0; i <= 40; i++) {
                         try {
-                            temp.put(i, RaspberryPin.fromPhysicalPin(i));
+                            temp.put(i, OldRaspberryPin.fromPhysicalPin(i));
                         } catch (IncorrectPhysicalPinSpecifiedException e) {
                             throw new RuntimeException(e);
                         }
-                    }
+                    }*/
                     return temp;
                 }
         );
