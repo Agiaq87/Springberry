@@ -1,5 +1,6 @@
 package it.giaquinto.springberry
 
+import it.giaquinto.springberry.raspberry.controller.RaspberryGPIOManager
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 
@@ -10,6 +11,7 @@ open class SpringBerryApplication {
         @JvmStatic
         fun main(args: Array<String>) {
             SpringApplication.run(SpringBerryApplication::class.java, *args)
+            RaspberryGPIOManager().visualInformer.test()
         }
     }
 }
