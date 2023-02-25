@@ -1,5 +1,6 @@
 package it.giaquinto.springberry.spring.controller.utils
 
+import it.giaquinto.springberry.common.annotation.SpringBerryRestController
 import it.giaquinto.springberry.spring.Identifier
 import it.giaquinto.springberry.spring.RestRadix
 import it.giaquinto.springberry.spring.bean.springberrybean.utils.Mathematics
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController
 /**
  * Simple controller for execute math operation
  */
-@RestController
+@SpringBerryRestController
 class MathController : SpringBerryController<Mathematics>() {
 
     private val mathematics: Mathematics by lazy {

@@ -5,6 +5,7 @@ import com.pi4j.io.gpio.digital.DigitalInput
 import com.pi4j.io.gpio.digital.DigitalOutput
 import com.pi4j.io.gpio.digital.DigitalState
 import it.giaquinto.springberry.raspberry.model.pin.RaspBerryPin
+import kotlinx.coroutines.Job
 
 typealias ProtocolName = String
 typealias PinAddress = Int
@@ -32,6 +33,11 @@ fun Context.makeInput(pin: RaspBerryPin): DigitalInput =
             .address(pin.bcmAddress)
             .build()
     )
+
+fun Job.cancelIfActive(): Unit {
+    if(isActive)
+        cancel()
+}
 
 fun loop(action: () -> Unit) {
     while (true) {

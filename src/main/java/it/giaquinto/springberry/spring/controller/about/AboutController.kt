@@ -1,5 +1,6 @@
 package it.giaquinto.springberry.spring.controller.about
 
+import it.giaquinto.springberry.common.annotation.SpringBerryRestController
 import it.giaquinto.springberry.spring.Identifier
 import it.giaquinto.springberry.spring.RestRadix
 import it.giaquinto.springberry.spring.bean.springberrybean.HardwareSoftwareProperties
@@ -29,7 +30,7 @@ import org.springframework.web.bind.annotation.RestController
  * - - Runtime status (DONE)
  *
  */
-@RestController
+@SpringBerryRestController
 class AboutController : SpringBerryController<HardwareSoftwareProperties>() {
 
     private val hardwareSoftwareProperties: HardwareSoftwareProperties by lazy {

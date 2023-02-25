@@ -2,14 +2,16 @@ package it.giaquinto.springberry.raspberry.controller
 
 import com.pi4j.context.Context
 import com.pi4j.io.gpio.digital.DigitalOutput
+import it.giaquinto.springberry.raspberry.cancelIfActive
 import it.giaquinto.springberry.raspberry.loop
 import it.giaquinto.springberry.raspberry.makeDigitalOutput
 import it.giaquinto.springberry.raspberry.model.pin.RaspBerryPin
 import it.giaquinto.springberry.raspberry.model.pin.configuration.BlinkConfiguration
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
+import java.util.concurrent.Executor
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
+import java.util.concurrent.ThreadPoolExecutor
 
 class RaspberryVisualInformer(pi4jContext: Context, green: RaspBerryPin, yellow: RaspBerryPin, red: RaspBerryPin) {
 
@@ -32,22 +34,24 @@ class RaspberryVisualInformer(pi4jContext: Context, green: RaspBerryPin, yellow:
     private var redJob: Job? = null
 
     fun test() {
-        greenJob = systemBlink(greenLed, greenJob, BlinkConfiguration.Normal)
-        yellowJob = systemBlink(yellowLed, yellowJob, BlinkConfiguration.Warning)
-        redJob = systemBlink(redLed, redJob, BlinkConfiguration.Error)
+        greenJob = blink(greenLed, greenJob, BlinkConfiguration.Normal)
+        yellowJob = blink(yellowLed, yellowJob, BlinkConfiguration.Warning)
+        redJob = blink(redLed, redJob, BlinkConfiguration.Error)
     }
 
-    private fun systemBlink(
+    private fun blink(
         led: DigitalOutput,
         job: Job?,
-        blinkConfiguration: BlinkConfiguration
+        blinkConfiguration: BlinkConfiguration,
     ): Job {
-        if (job?.isActive == true)
-            job.cancel()
+        job?.cancelIfActive()
 
         return coroutineScope.launch {
             loop {
-                led.blink(blinkConfiguration.delay, blinkConfiguration.duration, blinkConfiguration.timeUnit)
+                led.on()
+                Thread.sleep(blinkConfiguration.delay)
+                led.off()
+                Thread.sleep(blinkConfiguration.duration)
             }
         }
     }

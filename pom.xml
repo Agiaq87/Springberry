@@ -19,6 +19,7 @@
 
     <properties>
         <java.version>17</java.version>
+        <start.class>it.giaquinto.springberry.SpringBerryApplication</start.class>
         <!-- DEPENDENCIES VERSIONS -->
         <slf4j.version>2.0.5</slf4j.version>
         <pi4j.version>2.2.1</pi4j.version>
@@ -92,6 +93,7 @@
             <artifactId>pi4j-plugin-linuxfs</artifactId>
             <version>${pi4j.version}</version>
         </dependency>
+        <!-- Plugin for I2C -->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
@@ -126,21 +128,12 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>3.0.3</version>
                 <configuration>
-                    <!-- Build a fully executable jar to use it via /etc/init.d
-                         see https://docs.spring.io/spring-boot/docs/current/reference/html/deployment-install.html
-                    -->
                     <executable>true</executable>
-                    <!-- Disabled Layers, as we have pi and not docker as target environment -->
-                    <!--                <layers>-->
-                    <!--                    <enabled>true</enabled>-->
-                    <!--
-                                </layers>
-                    -->
                 </configuration>
                 <executions>
                     <execution>
                         <goals>
-                            <goal>build-info</goal>
+                            <goal>repackage</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -166,43 +159,10 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <jvmTarget>1.8</jvmTarget>
+                    <jvmTarget>17</jvmTarget>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.5.1</version>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                    <encoding>UTF-8</encoding>
-                    <generatedSourcesDirectory>${project.build.directory}/generated-sources/</generatedSourcesDirectory>
-                    <annotationProcessorPaths>
-                        <annotationProcessors>
-                            <annotationProcessor>
-                                it.giaquinto.springberry.common.logger.processor.SpringBerryModelBuilderProcessor
-                            </annotationProcessor>
-                        </annotationProcessors>
-                    </annotationProcessorPaths>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>compile</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>testCompile</id>
-                        <phase>test-compile</phase>
-                        <goals>
-                            <goal>testCompile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+
         </plugins>
     </build>
 

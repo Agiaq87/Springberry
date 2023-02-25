@@ -1,11 +1,5 @@
-package it.giaquinto.springberry.common.annotation;
+package it.giaquinto.springberry.common.annotation
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
-@Retention(RetentionPolicy.SOURCE)
-@Target(ElementType.TYPE)
-public @interface SpringBerryModelBuilder {
-}
+@Retention(AnnotationRetention.RUNTIME)
+@Target(AnnotationTarget.CLASS)
+annotation class SpringBerryModelBuilder 
