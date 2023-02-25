@@ -6,6 +6,7 @@ import it.giaquinto.springberry.spring.bean.springberrybean.utils.Mathematics
 import it.giaquinto.springberry.spring.configuration.SpringBerryConfiguration
 import it.giaquinto.springberry.spring.controller.SpringBerryController
 import it.giaquinto.springberry.spring.model.api.ApiResult
+import it.giaquinto.springberry.spring.model.http.HttpRequest
 import it.giaquinto.springberry.spring.model.math.NumberRepresentation
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.web.bind.annotation.GetMapping
@@ -25,6 +26,10 @@ class MathController : SpringBerryController<Mathematics>() {
         get() = this.javaClass.packageName
     override val uniqueRestRadix: RestRadix
         get() = MathController.uniqueRestRadix
+
+    @GetMapping("${MathController.uniqueRestRadix}/$radixControllerAcceptedRequest")
+    override fun controllerAcceptedMethod(): ApiResult<Array<HttpRequest?>?> =
+        super.controllerAcceptedMethod()
 
     @GetMapping(MathController.uniqueRestRadix)
     override fun defaultResponse(): ApiResult<Mathematics> =

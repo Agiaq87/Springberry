@@ -1,4 +1,4 @@
-package it.giaquinto.springberry.spring.annotation;
+package it.giaquinto.springberry.common.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

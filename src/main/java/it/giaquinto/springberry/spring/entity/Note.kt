@@ -1,6 +1,6 @@
 package it.giaquinto.springberry.spring.entity
 
-import it.giaquinto.springberry.spring.annotation.SpringBerryModelBuilder
+import it.giaquinto.springberry.common.annotation.SpringBerryModelBuilder
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.Id

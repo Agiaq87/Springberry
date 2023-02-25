@@ -1,8 +1,8 @@
 package it.giaquinto.springberry.spring.controller.utils
 
+import it.giaquinto.springberry.common.annotation.SpringBerryRestController
 import it.giaquinto.springberry.spring.Identifier
 import it.giaquinto.springberry.spring.RestRadix
-import it.giaquinto.springberry.spring.annotation.SpringBerryRestController
 import it.giaquinto.springberry.spring.controller.SpringBerryController
 import it.giaquinto.springberry.spring.entity.Note
 import it.giaquinto.springberry.spring.model.api.ApiResult
@@ -26,7 +26,7 @@ class NoteController : SpringBerryController<List<Note?>?>() {
     override val uniqueRestRadix: RestRadix
         get() = NoteController.uniqueRestRadix
 
-    @GetMapping("${NoteController.uniqueRestRadix}/${SpringBerryController.radixControllerAcceptedRequest}")
+    @GetMapping("${NoteController.uniqueRestRadix}/$radixControllerAcceptedRequest")
     override fun controllerAcceptedMethod(): ApiResult<Array<HttpRequest?>> =
         ApiResult.Success(
             arrayOf(

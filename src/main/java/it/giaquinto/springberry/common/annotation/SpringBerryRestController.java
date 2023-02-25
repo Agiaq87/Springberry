@@ -1,4 +1,4 @@
-package it.giaquinto.springberry.spring.annotation;
+package it.giaquinto.springberry.common.annotation;
 
 import org.springframework.core.annotation.AliasFor;
 import org.springframework.stereotype.Controller;
