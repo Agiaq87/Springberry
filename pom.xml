@@ -13,7 +13,7 @@
 
     <groupId>it.giaquinto</groupId>
     <artifactId>Springberry</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>Springberry</name>
     <description>Springberry</description>
@@ -131,6 +131,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>3.0.3</version>
                 <configuration>
                     <!-- Build a fully executable jar to use it via /etc/init.d
                          see https://docs.spring.io/spring-boot/docs/current/reference/html/deployment-install.html
@@ -150,18 +151,6 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <annotationProcessorPaths>
-                        <path>
-                            <groupId>com.google.auto.service</groupId>
-                            <artifactId>auto-service</artifactId>
-                            <version>1.0.1</version>
-                        </path>
-                    </annotationProcessorPaths>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
@@ -196,11 +185,18 @@
                     <target>${java.version}</target>
                     <encoding>UTF-8</encoding>
                     <generatedSourcesDirectory>${project.build.directory}/generated-sources/</generatedSourcesDirectory>
-                    <annotationProcessors>
-                        <annotationProcessor>
-                            it.giaquinto.springberry.common.logger.processor.SpringBerryModelBuilderProcessor
-                        </annotationProcessor>
-                    </annotationProcessors>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>com.google.auto.service</groupId>
+                            <artifactId>auto-service</artifactId>
+                            <version>1.0.1</version>
+                        </path>
+                        <annotationProcessors>
+                            <annotationProcessor>
+                                it.giaquinto.springberry.common.logger.processor.SpringBerryModelBuilderProcessor
+                            </annotationProcessor>
+                        </annotationProcessors>
+                    </annotationProcessorPaths>
                 </configuration>
                 <executions>
                     <execution>

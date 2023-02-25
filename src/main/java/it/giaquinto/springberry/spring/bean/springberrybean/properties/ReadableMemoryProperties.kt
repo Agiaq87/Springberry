@@ -1,4 +1,4 @@
-package it.giaquinto.springberry.model.specific.memory
+package it.giaquinto.springberry.spring.bean.springberrybean.properties
 
 import it.giaquinto.springberry.spring.utils.memory.UnitMemoryConverter
 import java.lang.management.MemoryUsage

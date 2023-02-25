@@ -1,31 +1,46 @@
 package it.giaquinto.springberry.raspberry.controller
 
+import com.pi4j.Pi4J
+import com.pi4j.context.Context
+import com.pi4j.library.pigpio.PiGpio
+import com.pi4j.plugin.linuxfs.provider.i2c.LinuxFsI2CProvider
+import com.pi4j.plugin.pigpio.provider.gpio.digital.PiGpioDigitalInputProvider
+import com.pi4j.plugin.pigpio.provider.gpio.digital.PiGpioDigitalOutputProvider
+import com.pi4j.plugin.pigpio.provider.pwm.PiGpioPwmProvider
+import com.pi4j.plugin.pigpio.provider.serial.PiGpioSerialProvider
+import com.pi4j.plugin.pigpio.provider.spi.PiGpioSpiProvider
+import com.pi4j.plugin.raspberrypi.platform.RaspberryPiPlatform
 import it.giaquinto.springberry.raspberry.model.pin.RaspBerryPin
 import it.giaquinto.springberry.raspberry.model.pin.modulation.ModulationTechnique
 import it.giaquinto.springberry.raspberry.model.pin.specification.PinMode
 import it.giaquinto.springberry.raspberry.model.pin.specification.PinVolt
-import it.giaquinto.springberry.raspberry.model.protocol.asynchronous.UARTProtocol
-import it.giaquinto.springberry.raspberry.model.protocol.synchronous.I2CProtocol
-import it.giaquinto.springberry.raspberry.model.protocol.synchronous.SPIProtocol
 
 
 class RaspberryGPIOManager {
 
-    val i2c0: I2CProtocol = TODO()
-    val i2c1: I2CProtocol = TODO()
-    val spi0: SPIProtocol = TODO()
-    val spi1: SPIProtocol = TODO()
-    val uart0: UARTProtocol = TODO()
-    val uart1: UARTProtocol = TODO()
-
-    init {
-        i2c0 = I2CProtocol(data = pinMap[3]!!, clock = pinMap[5]!!)
-        i2c1 = I2CProtocol(data = pinMap[27]!!, clock = pinMap[28]!!)
+    private val piGpio by lazy {
+        PiGpio.newNativeInstance()
     }
 
-    companion object {
-        @JvmStatic
-        private val pinMap: Map<Int, RaspBerryPin> = mapOf(
+    private val pi4jContext: Context by lazy {
+        Pi4J
+            .newContextBuilder()
+            .noAutoDetect()
+            .add(RaspberryPiPlatform())
+            .add(
+                PiGpioDigitalInputProvider.newInstance(piGpio),
+                PiGpioDigitalOutputProvider.newInstance(piGpio),
+                PiGpioPwmProvider.newInstance(piGpio),
+                PiGpioSerialProvider.newInstance(piGpio),
+                PiGpioSpiProvider.newInstance(piGpio),
+                LinuxFsI2CProvider.newInstance()
+            )
+            .build()
+    }
+
+    // TODO delete and use specific map
+    private val pinMap: Map<Int, RaspBerryPin> by lazy {
+        mapOf(
             Pair(1, RaspBerryPin(1, null, null, "3.3V", PinMode.OUT, PinVolt.STANDARD, ModulationTechnique.Generic)),
             Pair(2, RaspBerryPin(2, null, null, "5.0VDC", PinMode.OUT, PinVolt.SPECIAL, ModulationTechnique.Generic)),
             Pair(3, RaspBerryPin(3, 2, 8, "GPIO 2", PinMode.OUT, PinVolt.STANDARD, ModulationTechnique.Generic)),
@@ -35,7 +50,7 @@ class RaspberryGPIOManager {
             Pair(7, RaspBerryPin(7, 4, 7, "GPIO 4", PinMode.OUT, PinVolt.STANDARD, ModulationTechnique.Generic)),
             Pair(8, RaspBerryPin(8, 14, 15, "GPIO 14", PinMode.OUT, PinVolt.STANDARD, ModulationTechnique.Generic)),
             Pair(9, RaspBerryPin(9, null, null, "GND", PinMode.GROUND, PinVolt.GROUND, ModulationTechnique.Generic)),
-            Pair(10, RaspBerryPin(10, 15, 16, "GPIO 15", PinMode.IN, PinVolt.GROUND, ModulationTechnique.Generic)),
+            Pair(10, RaspBerryPin(10, 15, 16, "GPIO 15", PinMode.OUT, PinVolt.GROUND, ModulationTechnique.Generic)),
             Pair(11, RaspBerryPin(11, 17, 0, "GPIO 17", PinMode.OUT, PinVolt.STANDARD, ModulationTechnique.Generic)),
             Pair(12, RaspBerryPin(12, 18, 1, "GPIO 18", PinMode.OUT, PinVolt.STANDARD, ModulationTechnique.Generic)),
             Pair(13, RaspBerryPin(13, 27, 2, "GPIO 27", PinMode.OUT, PinVolt.STANDARD, ModulationTechnique.Generic)),
@@ -71,4 +86,27 @@ class RaspberryGPIOManager {
             Pair(40, RaspBerryPin(40, 21, 29, "GPIO 21", PinMode.OUT, PinVolt.STANDARD, ModulationTechnique.Generic)),
         )
     }
+
+    val visualInformer: RaspberryVisualInformer by lazy {
+        RaspberryVisualInformer(
+            pi4jContext,
+            pinMap[12]!!,
+            pinMap[16]!!,
+            pinMap[18]!!
+        )
+    }
+
+    /*    val i2c0: I2CProtocol = TODO()
+        val i2c1: I2CProtocol = TODO()
+        val spi0: SPIProtocol = TODO()
+        val spi1: SPIProtocol = TODO()
+        val uart0: UARTProtocol = TODO()
+        val uart1: UARTProtocol = TODO()*/
+
+    init {
+
+        /*i2c0 = I2CProtocol(data = pinMap[3]!!, clock = pinMap[5]!!)
+        i2c1 = I2CProtocol(data = pinMap[27]!!, clock = pinMap[28]!!)*/
+    }
+
 }

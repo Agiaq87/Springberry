@@ -1,6 +1,5 @@
 package it.giaquinto.springberry.spring.bean.springberrybean.properties
 
-import it.giaquinto.springberry.model.specific.memory.ReadableMemoryProperties
 import java.lang.management.ManagementFactory
 
 class MemoryProperties {
