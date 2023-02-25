@@ -33,28 +33,44 @@ class RaspberryVisualInformer(pi4jContext: Context, green: RaspBerryPin, yellow:
     private val redLed: DigitalOutput = pi4jContext.makeDigitalOutput(red)
     private var redJob: Job? = null
 
-    fun test() {
-        greenJob = blink(greenLed, greenJob, BlinkConfiguration.Normal)
-        yellowJob = blink(yellowLed, yellowJob, BlinkConfiguration.Warning)
-        redJob = blink(redLed, redJob, BlinkConfiguration.Error)
-    }
 
     private fun blink(
         led: DigitalOutput,
         job: Job?,
         blinkConfiguration: BlinkConfiguration,
+        repeat: Boolean = false
     ): Job {
         job?.cancelIfActive()
 
         return coroutineScope.launch {
-            loop {
-                led.on()
-                Thread.sleep(blinkConfiguration.delay)
-                led.off()
-                Thread.sleep(blinkConfiguration.duration)
+            if (repeat) {
+                loop {
+                    _blink(led, blinkConfiguration)
+                }
+            } else {
+                _blink(led, blinkConfiguration)
             }
         }
     }
 
+    private fun _blink(led: DigitalOutput, blinkConfiguration: BlinkConfiguration) {
+        led.on()
+        Thread.sleep(blinkConfiguration.delay)
+        led.off()
+        Thread.sleep(blinkConfiguration.duration)
+    }
+
+    fun start() {
+        greenJob = blink(greenLed, greenJob, BlinkConfiguration.Normal, true)
+    }
+
+
+    fun warning() {
+        yellowJob = blink(yellowLed, yellowJob, BlinkConfiguration.Warning)
+    }
+
+    fun error() {
+        redJob = blink(redLed, redJob, BlinkConfiguration.Error)
+    }
 
 }

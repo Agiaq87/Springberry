@@ -7,7 +7,6 @@ import jakarta.persistence.Id
 import java.sql.Timestamp
 
 @Entity
-@SpringBerryModelBuilder
 class Note {
     @Id
     var id: Long = 0

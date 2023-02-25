@@ -1,6 +1,6 @@
 package it.giaquinto.springberry.spring.controller.about
 
-import it.giaquinto.springberry.common.annotation.SpringBerryRestController
+import it.giaquinto.springberry.spring.annotation.SpringBerryRestController
 import it.giaquinto.springberry.spring.Identifier
 import it.giaquinto.springberry.spring.RestRadix
 import it.giaquinto.springberry.spring.bean.springberrybean.HardwareSoftwareProperties
@@ -11,7 +11,6 @@ import it.giaquinto.springberry.spring.model.api.ApiResult
 import it.giaquinto.springberry.spring.model.http.HttpRequest
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RestController
 
 /**
  * Controller for take information on SpringBerry status

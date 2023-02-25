@@ -14,8 +14,12 @@ import it.giaquinto.springberry.raspberry.model.pin.RaspBerryPin
 import it.giaquinto.springberry.raspberry.model.pin.modulation.ModulationTechnique
 import it.giaquinto.springberry.raspberry.model.pin.specification.PinMode
 import it.giaquinto.springberry.raspberry.model.pin.specification.PinVolt
+import org.springframework.beans.factory.config.ConfigurableBeanFactory
+import org.springframework.context.annotation.Scope
+import org.springframework.stereotype.Component
 
-
+@Component
+@Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
 class RaspberryGPIOManager {
 
     private val piGpio by lazy {
@@ -87,7 +91,7 @@ class RaspberryGPIOManager {
         )
     }
 
-    val visualInformer: RaspberryVisualInformer by lazy {
+    private val visualInformer: RaspberryVisualInformer by lazy {
         RaspberryVisualInformer(
             pi4jContext,
             pinMap[12]!!,
@@ -108,5 +112,12 @@ class RaspberryGPIOManager {
         /*i2c0 = I2CProtocol(data = pinMap[3]!!, clock = pinMap[5]!!)
         i2c1 = I2CProtocol(data = pinMap[27]!!, clock = pinMap[28]!!)*/
     }
+
+
+    fun startVisualInformer() = visualInformer.start()
+
+    fun warningVisualInformer() = visualInformer.warning()
+
+    fun errorVisualInformer() = visualInformer.error()
 
 }

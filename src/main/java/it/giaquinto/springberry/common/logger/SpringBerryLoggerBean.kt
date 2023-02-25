@@ -5,10 +5,15 @@ import it.giaquinto.springberry.spring.utils.file.FileUtils
 import it.giaquinto.springberry.spring.utils.file.write
 import it.giaquinto.springberry.spring.utils.time.TimeConverter
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.config.ConfigurableBeanFactory
+import org.springframework.context.annotation.Scope
+import org.springframework.stereotype.Component
 import java.io.FileWriter
 
 
-object SpringBerryLoggerBean {
+@Component
+@Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
+class SpringBerryLoggerBean {
 
     private val D: FileWriter
     private val V: FileWriter

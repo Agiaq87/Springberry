@@ -1,6 +1,6 @@
 package it.giaquinto.springberry.spring.controller.utils
 
-import it.giaquinto.springberry.common.annotation.SpringBerryRestController
+import it.giaquinto.springberry.spring.annotation.SpringBerryRestController
 import it.giaquinto.springberry.spring.Identifier
 import it.giaquinto.springberry.spring.RestRadix
 import it.giaquinto.springberry.spring.bean.springberrybean.utils.Mathematics
@@ -12,7 +12,6 @@ import it.giaquinto.springberry.spring.model.math.NumberRepresentation
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RestController
 
 /**
  * Simple controller for execute math operation

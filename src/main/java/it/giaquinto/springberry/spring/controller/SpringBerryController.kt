@@ -10,14 +10,15 @@ import it.giaquinto.springberry.spring.model.http.HttpRequest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import org.springframework.beans.factory.annotation.Autowired
 
-abstract class SpringBerryController<T> {
+abstract class SpringBerryController<T>(@Autowired val springBerryLoggerBean: SpringBerryLoggerBean) {
 
     abstract val identifier: Identifier
 
     abstract val uniqueRestRadix: RestRadix
 
-    val springBerryLoggerBean: SpringBerryLoggerBean = SpringBerryLoggerBean
+
 
     abstract fun defaultResponse(): ApiResult<T>
 

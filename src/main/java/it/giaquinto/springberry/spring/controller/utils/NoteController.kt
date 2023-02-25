@@ -1,6 +1,6 @@
 package it.giaquinto.springberry.spring.controller.utils
 
-import it.giaquinto.springberry.common.annotation.SpringBerryRestController
+import it.giaquinto.springberry.spring.annotation.SpringBerryRestController
 import it.giaquinto.springberry.spring.Identifier
 import it.giaquinto.springberry.spring.RestRadix
 import it.giaquinto.springberry.spring.controller.SpringBerryController
