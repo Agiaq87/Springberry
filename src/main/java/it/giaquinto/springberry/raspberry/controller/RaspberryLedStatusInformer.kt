@@ -13,6 +13,11 @@ class RaspberryLedStatusInformer(pi4jContext: Context, red: RaspBerryPin, green:
 
     override val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO)
 
+    // GREEN
+    // Default pin is 13 - BCM 27
+    private val greenLed: DigitalOutput = pi4jContext.makeDigitalOutput(green)
+    private var greenJob: Job? = null
+
     // BLUE
     // Default pin is 15 - BCM 22
     private val blueLed: DigitalOutput = pi4jContext.makeDigitalOutput(blue)
@@ -22,12 +27,6 @@ class RaspberryLedStatusInformer(pi4jContext: Context, red: RaspBerryPin, green:
     // Default pin is 37 - BCM 26
     private val redLed: DigitalOutput = pi4jContext.makeDigitalOutput(red)
     private var redJob: Job? = null
-
-
-    // GREEN
-    // Default pin is 13 - BCM 27
-    private val greenLed: DigitalOutput = pi4jContext.makeDigitalOutput(green)
-    private var greenJob: Job? = null
 
     // Green led for springberry start
     // Combine with red for warning
