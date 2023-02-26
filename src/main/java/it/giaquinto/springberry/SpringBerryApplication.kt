@@ -6,11 +6,7 @@ import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 
 @SpringBootApplication
-open class SpringBerryApplication(@Autowired private val raspberryGPIOManager: RaspberryGPIOManager) {
-
-    init {
-        raspberryGPIOManager.startVisualInformer()
-    }
+open class SpringBerryApplication {
 
     companion object {
         @JvmStatic

@@ -25,10 +25,10 @@ class SpringBerryInterceptor(
 
     override fun preHandle(request: HttpServletRequest, response: HttpServletResponse, handler: Any): Boolean {
         coroutineScope.launch {
-            raspberryGPIOManager.warningVisualInformer()
+            raspberryGPIOManager.requestVisualInformer(false)
         }
         coroutineScope.launch {
-            springBerryLoggerBean.writeLog(LogMessage.Direct(request.queryString))
+            springBerryLoggerBean.writeLog(LogMessage.Direct(request.remoteUser))
         }
 
         return super.preHandle(request, response, handler)
@@ -40,6 +40,12 @@ class SpringBerryInterceptor(
         handler: Any,
         modelAndView: ModelAndView?
     ) {
+        coroutineScope.launch {
+            raspberryGPIOManager.responseVisualInformer(false)
+        }
+        coroutineScope.launch {
+            springBerryLoggerBean.writeLog(LogMessage.Direct("${response.status}"))
+        }
         super.postHandle(request, response, handler, modelAndView)
     }
 

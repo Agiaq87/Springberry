@@ -17,10 +17,7 @@ import java.util.*
  * Template controller
  */
 @SpringBerryRestController
-class NoteController : SpringBerryController<List<Note?>?>() {
-
-    @Autowired
-    lateinit var noteRepository: NoteRepository
+class NoteController(@Autowired private val noteRepository: NoteRepository) : SpringBerryController<List<Note?>?>() {
     override val identifier: Identifier
         get() = this.javaClass.packageName
     override val uniqueRestRadix: RestRadix
@@ -40,50 +37,44 @@ class NoteController : SpringBerryController<List<Note?>?>() {
 
     @GetMapping(NoteController.uniqueRestRadix)
     override fun defaultResponse(): ApiResult<List<Note?>?> =
-        propagateApiResult(ApiResult.Success(noteRepository.findAll()))
+        ApiResult.Success(noteRepository.findAll())
 
     @GetMapping("${NoteController.uniqueRestRadix}/id/{id}")
     fun findById(@PathVariable id: Long?): ApiResult<Note?> =
-        propagateApiResult(
-            if (id != null) {
-                with(noteRepository.findById(id)) {
-                    if (isEmpty)
-                        ApiResult.Error("Not found", HttpStatusCode.NO_CONTENT)
-                    else
-                        ApiResult.Success(get())
-                }
-            } else {
-                ApiResult.Error("Needed an ID", HttpStatusCode.NO_CONTENT)
+        if (id != null) {
+            with(noteRepository.findById(id)) {
+                if (isEmpty)
+                    ApiResult.Error("Not found", HttpStatusCode.NO_CONTENT)
+                else
+                    ApiResult.Success(get())
             }
-        )
+        } else {
+            ApiResult.Error("Needed an ID", HttpStatusCode.NO_CONTENT)
+        }
 
     @GetMapping("${NoteController.uniqueRestRadix}/name/{name}")
     fun findByName(@PathVariable name: String?): ApiResult<Note?> =
-        propagateApiResult(
-            if (name != null) {
-                with(noteRepository.findByName(name)) {
-                    if (isEmpty) {
-                        ApiResult.Error("Not found", HttpStatusCode.NO_CONTENT)
-                    } else {
-                        ApiResult.Success(get())
-                    }
+        if (name != null) {
+            with(noteRepository.findByName(name)) {
+                if (isEmpty) {
+                    ApiResult.Error("Not found", HttpStatusCode.NO_CONTENT)
+                } else {
+                    ApiResult.Success(get())
                 }
-            } else {
-                ApiResult.Error("Needed an ID", HttpStatusCode.NO_CONTENT)
             }
-        )
+        } else {
+            ApiResult.Error("Needed an ID", HttpStatusCode.NO_CONTENT)
+        }
 
     @PostMapping(NoteController.uniqueRestRadix)
     fun create(@RequestBody note: Note?): ApiResult<Note?> =
-        propagateApiResult(
-            note?.let {
-                ApiResult.Success(
-                    noteRepository.save(it)
-                )
-            } ?: run {
-                ApiResult.Error("Incorrect value, expected JSON Note")
-            }
-        )
+        note?.let {
+            ApiResult.Success(
+                noteRepository.save(it)
+            )
+        } ?: run {
+            ApiResult.Error("Incorrect value, expected JSON Note")
+        }
 
 
     companion object {

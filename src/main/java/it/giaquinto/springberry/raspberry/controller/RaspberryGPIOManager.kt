@@ -114,10 +114,14 @@ class RaspberryGPIOManager {
     }
 
 
-    fun startVisualInformer() = visualInformer.start()
+    fun startVisualInformer() = visualInformer.onStart()
 
-    fun warningVisualInformer() = visualInformer.warning()
+    fun warningVisualInformer() = visualInformer.onWarning()
 
-    fun errorVisualInformer() = visualInformer.error()
+    fun errorVisualInformer() = visualInformer.onError()
+
+    fun requestVisualInformer(authenticated: Boolean) = visualInformer.onRequest(authenticated)
+
+    fun responseVisualInformer(authenticated: Boolean) = visualInformer.onResponse(authenticated)
 
 }

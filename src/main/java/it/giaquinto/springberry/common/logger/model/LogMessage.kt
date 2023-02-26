@@ -1,6 +1,7 @@
 package it.giaquinto.springberry.common.logger.model
 
 import it.giaquinto.springberry.spring.utils.time.TimeConverter
+import jakarta.servlet.http.HttpServletRequest
 
 sealed class LogMessage(
     val message: String,
@@ -38,4 +39,12 @@ sealed class LogMessage(
         date = TimeConverter.now(),
         logOut = LogOut.ERROR
     )
+
+   companion object {
+       fun fromHttpServletRequest(httpServletRequest: HttpServletRequest): LogMessage {
+            val authenticated = httpServletRequest.remoteUser != null
+
+           return Direct("authenticated: $authenticated")
+       }
+   }
 }

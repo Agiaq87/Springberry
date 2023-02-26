@@ -64,4 +64,5 @@ class SpringBerryLoggerBean {
                 E.write(logMessage)
             }
         }
+
 }

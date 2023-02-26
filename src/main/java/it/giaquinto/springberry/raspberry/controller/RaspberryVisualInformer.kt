@@ -8,10 +8,6 @@ import it.giaquinto.springberry.raspberry.makeDigitalOutput
 import it.giaquinto.springberry.raspberry.model.pin.RaspBerryPin
 import it.giaquinto.springberry.raspberry.model.pin.configuration.BlinkConfiguration
 import kotlinx.coroutines.*
-import java.util.concurrent.Executor
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
-import java.util.concurrent.ThreadPoolExecutor
 
 class RaspberryVisualInformer(pi4jContext: Context, green: RaspBerryPin, yellow: RaspBerryPin, red: RaspBerryPin) {
 
@@ -60,17 +56,28 @@ class RaspberryVisualInformer(pi4jContext: Context, green: RaspBerryPin, yellow:
         Thread.sleep(blinkConfiguration.duration)
     }
 
-    fun start() {
+    fun onStart() {
         greenJob = blink(greenLed, greenJob, BlinkConfiguration.Normal, true)
     }
 
 
-    fun warning() {
+    fun onWarning() {
         yellowJob = blink(yellowLed, yellowJob, BlinkConfiguration.Warning)
     }
 
-    fun error() {
+    fun onError() {
         redJob = blink(redLed, redJob, BlinkConfiguration.Error)
     }
 
+    fun onRequest(authorized: Boolean) =
+        if (authorized)
+            greenJob = blink(greenLed, greenJob, BlinkConfiguration.Request)
+        else
+            yellowJob = blink(yellowLed, yellowJob, BlinkConfiguration.Request)
+
+    fun onResponse(authorized: Boolean) =
+        if (authorized)
+            greenJob = blink(greenLed, greenJob, BlinkConfiguration.Response)
+        else
+            yellowJob = blink(yellowLed, yellowJob, BlinkConfiguration.Response)
 }

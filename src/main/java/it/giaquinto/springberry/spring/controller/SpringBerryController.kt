@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.springframework.beans.factory.annotation.Autowired
 
-abstract class SpringBerryController<T>(@Autowired val springBerryLoggerBean: SpringBerryLoggerBean) {
+abstract class SpringBerryController<T> {
 
     abstract val identifier: Identifier
 
@@ -24,18 +24,6 @@ abstract class SpringBerryController<T>(@Autowired val springBerryLoggerBean: Sp
 
     protected open fun controllerAcceptedMethod(): ApiResult<Array<HttpRequest?>?> =
         ApiResult.Success(_data = arrayOf(HttpRequest.GET))
-
-    inline fun <reified ApiResult : SpringBerryModel> propagateApiResult(apiResult: ApiResult): ApiResult {
-        runBlocking {
-            launch(Dispatchers.IO) {
-                springBerryLoggerBean.writeLog(apiResult.toLog())
-            }
-            launch(Dispatchers.IO) {
-
-            }
-        }
-        return apiResult
-    }
 
     companion object {
         const val radixControllerAcceptedRequest: Rest = "httpAcceptedMethod"
