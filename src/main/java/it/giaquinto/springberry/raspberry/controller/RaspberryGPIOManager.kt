@@ -91,12 +91,21 @@ class RaspberryGPIOManager {
         )
     }
 
-    private val visualInformer: RaspberryVisualInformer by lazy {
-        RaspberryVisualInformer(
+    val raspberryLedExecutorInformer: RaspberryLedExecutorInformer by lazy {
+        RaspberryLedExecutorInformer(
             pi4jContext,
-            pinMap[12]!!,
+            pinMap[22]!!,
             pinMap[16]!!,
             pinMap[18]!!
+        )
+    }
+
+    val raspberryLedStatusInformer: RaspberryLedStatusInformer by lazy {
+        RaspberryLedStatusInformer(
+            pi4jContext,
+            pinMap[13]!!,
+            pinMap[15]!!,
+            pinMap[37]!!
         )
     }
 
@@ -112,16 +121,5 @@ class RaspberryGPIOManager {
         /*i2c0 = I2CProtocol(data = pinMap[3]!!, clock = pinMap[5]!!)
         i2c1 = I2CProtocol(data = pinMap[27]!!, clock = pinMap[28]!!)*/
     }
-
-
-    fun startVisualInformer() = visualInformer.onStart()
-
-    fun warningVisualInformer() = visualInformer.onWarning()
-
-    fun errorVisualInformer() = visualInformer.onError()
-
-    fun requestVisualInformer(authenticated: Boolean) = visualInformer.onRequest(authenticated)
-
-    fun responseVisualInformer(authenticated: Boolean) = visualInformer.onResponse(authenticated)
 
 }

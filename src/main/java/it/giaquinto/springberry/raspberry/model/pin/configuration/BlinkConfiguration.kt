@@ -15,5 +15,6 @@ sealed class BlinkConfiguration(
     object Request: BlinkConfiguration(50L, 5L)
 
     object Response: BlinkConfiguration(50L, 5L)
+    object HandlerException : BlinkConfiguration(50L, 50L)
 
 }
