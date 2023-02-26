@@ -12,9 +12,9 @@ sealed class BlinkConfiguration(
     object Warning : BlinkConfiguration(100L, 3000L)
     object Error : BlinkConfiguration(100L, 1500L)
 
-    object Request: BlinkConfiguration(50L, 5L)
+    object Request: BlinkConfiguration(100L, 100L)
 
-    object Response: BlinkConfiguration(50L, 5L)
-    object HandlerException : BlinkConfiguration(50L, 50L)
+    object Response: BlinkConfiguration(100L, 100L)
+    object HandlerException : BlinkConfiguration(100L, 100L)
 
 }
