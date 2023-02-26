@@ -103,9 +103,9 @@ class RaspberryGPIOManager {
     val raspberryLedStatusInformer: RaspberryLedStatusInformer by lazy {
         RaspberryLedStatusInformer(
             pi4jContext,
+            pinMap[37]!!,
             pinMap[13]!!,
-            pinMap[15]!!,
-            pinMap[37]!!
+            pinMap[15]!!
         )
     }
 
