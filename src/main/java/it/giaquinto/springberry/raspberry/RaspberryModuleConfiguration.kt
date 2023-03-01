@@ -39,7 +39,8 @@ fun Job.cancelIfActive(): Unit {
         cancel()
 }
 
-fun loop(action: () -> Unit) {
+
+ fun loop(action: () -> Unit) {
     while (true) {
         action()
     }

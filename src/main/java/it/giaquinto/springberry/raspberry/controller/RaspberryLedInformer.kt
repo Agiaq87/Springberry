@@ -6,6 +6,7 @@ import it.giaquinto.springberry.raspberry.loop
 import it.giaquinto.springberry.raspberry.model.pin.configuration.BlinkConfiguration
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 interface RaspberryLedInformer {
@@ -13,55 +14,32 @@ interface RaspberryLedInformer {
 
     fun blink(
         led: DigitalOutput,
-        job: Job?,
-        blinkConfiguration: BlinkConfiguration,
-        repeat: Boolean = false
-    ): Job {
-        job?.cancelIfActive()
-
-        return coroutineScope.launch {
-            if (repeat) {
-                loop {
-                    _blink(led, blinkConfiguration)
-                }
-            } else {
-                _blink(led, blinkConfiguration)
-            }
+        blinkConfiguration: BlinkConfiguration
+    ): Job =
+        coroutineScope.launch {
+            led.on()
+            delay(blinkConfiguration.delay)
+            led.off()
+            delay(blinkConfiguration.duration)
         }
-    }
 
     fun combineBlink(
         ledsList: List<DigitalOutput>,
-        jobsList: List<Job?>,
-        blinkConfiguration: BlinkConfiguration,
-        repeat: Boolean
-    ): List<Pair<DigitalOutput, Job>> {
-        jobsList.forEach { it?.cancelIfActive() }
-
-        return mutableListOf<Pair<DigitalOutput, Job>>().apply {
+        blinkConfiguration: BlinkConfiguration
+    ): List<Pair<DigitalOutput, Job>> =
+        mutableListOf<Pair<DigitalOutput, Job>>().apply {
             ledsList.forEach {
                 add(
                     Pair(
                         first = it,
                         second = coroutineScope.launch {
-                            if (repeat) {
-                                loop {
-                                    _blink(it, blinkConfiguration)
-                                }
-                            } else {
-                                _blink(it, blinkConfiguration)
-                            }
+                            it.on()
+                            delay(blinkConfiguration.delay)
+                            it.off()
+                            delay(blinkConfiguration.duration)
                         }
                     )
                 )
             }
         }
-    }
-
-    private fun _blink(led: DigitalOutput, blinkConfiguration: BlinkConfiguration) {
-        led.on()
-        Thread.sleep(blinkConfiguration.delay)
-        led.off()
-        Thread.sleep(blinkConfiguration.duration)
-    }
 }

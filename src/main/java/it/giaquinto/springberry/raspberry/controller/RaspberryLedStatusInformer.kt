@@ -2,12 +2,14 @@ package it.giaquinto.springberry.raspberry.controller
 
 import com.pi4j.context.Context
 import com.pi4j.io.gpio.digital.DigitalOutput
+import it.giaquinto.springberry.raspberry.loop
 import it.giaquinto.springberry.raspberry.makeDigitalOutput
 import it.giaquinto.springberry.raspberry.model.pin.RaspBerryPin
 import it.giaquinto.springberry.raspberry.model.pin.configuration.BlinkConfiguration
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import java.lang.IllegalStateException
 
 class RaspberryLedStatusInformer(pi4jContext: Context, red: RaspBerryPin, green: RaspBerryPin, blue: RaspBerryPin): RaspberryLedInformer {
 
@@ -16,7 +18,7 @@ class RaspberryLedStatusInformer(pi4jContext: Context, red: RaspBerryPin, green:
     // GREEN
     // Default pin is 13 - BCM 27
     private val greenLed: DigitalOutput = pi4jContext.makeDigitalOutput(green)
-    private var greenJob: Job? = null
+    private var greenJob: Thread? = null
 
     // BLUE
     // Default pin is 15 - BCM 22

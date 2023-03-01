@@ -16,33 +16,28 @@ class RaspberryLedExecutorInformer(pi4jContext: Context, green: RaspBerryPin, ye
     // WARNING
     // Default pin is 16 - BCM 23
     private val yellowLed: DigitalOutput = pi4jContext.makeDigitalOutput(yellow)
-    private var yellowJob: Job? = null
 
     // ERROR
     // Default pin is 18 - BCM 24
     private val redLed: DigitalOutput = pi4jContext.makeDigitalOutput(red)
-    private var redJob: Job? = null
-
 
     // OK
     // Default pin is 22 - BCM 25
     private val greenLed: DigitalOutput = pi4jContext.makeDigitalOutput(green)
-    private var greenJob: Job? = null
 
 
     fun onRequest(authorized: Boolean) =
         if (authorized)
-            greenJob = blink(greenLed, greenJob, BlinkConfiguration.Request)
+            blink(greenLed, BlinkConfiguration.Request)
         else
-            yellowJob = blink(yellowLed, yellowJob, BlinkConfiguration.Request)
+            blink(yellowLed, BlinkConfiguration.Request)
 
     fun onResponse(authorized: Boolean) =
         if (authorized)
-            greenJob = blink(greenLed, greenJob, BlinkConfiguration.Response)
+            blink(greenLed, BlinkConfiguration.Response)
         else
-            yellowJob = blink(yellowLed, yellowJob, BlinkConfiguration.Response)
+            blink(yellowLed, BlinkConfiguration.Response)
 
-    fun onError() {
-        redJob = blink(redLed, redJob, BlinkConfiguration.HandlerException)
-    }
+    fun onError() =
+        blink(redLed, BlinkConfiguration.HandlerException)
 }
