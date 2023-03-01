@@ -4,6 +4,9 @@ import it.giaquinto.springberry.common.logger.model.LogMessage
 import it.giaquinto.springberry.spring.utils.file.FileUtils
 import it.giaquinto.springberry.spring.utils.file.write
 import it.giaquinto.springberry.spring.utils.time.TimeConverter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.config.ConfigurableBeanFactory
 import org.springframework.context.annotation.Scope
@@ -14,6 +17,8 @@ import java.io.FileWriter
 @Component
 @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
 class SpringBerryLoggerBean {
+
+    private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO)
 
     private val D: FileWriter
     private val V: FileWriter
@@ -38,30 +43,32 @@ class SpringBerryLoggerBean {
         E = FileUtils.makeWriter(FileUtils.makeFile("log/E/${TimeConverter.now(false)}.log"))
     }
 
-    suspend fun writeLog(logMessage: LogMessage): Unit =
-        when (logMessage.logOut) {
-            it.giaquinto.springberry.common.logger.model.LogOut.DIRECT -> {
-                logger.trace(logMessage.message)
-                U.write(logMessage)
-                D.write(logMessage)
-            }
+    fun writeLog(logMessage: LogMessage) =
+        coroutineScope.launch {
+            when (logMessage.logOut) {
+                it.giaquinto.springberry.common.logger.model.LogOut.DIRECT -> {
+                    logger.trace(logMessage.message)
+                    U.write(logMessage)
+                    D.write(logMessage)
+                }
 
-            it.giaquinto.springberry.common.logger.model.LogOut.VERBOSE -> {
-                logger.info(logMessage.message)
-                U.write(logMessage)
-                V.write(logMessage)
-            }
+                it.giaquinto.springberry.common.logger.model.LogOut.VERBOSE -> {
+                    logger.info(logMessage.message)
+                    U.write(logMessage)
+                    V.write(logMessage)
+                }
 
-            it.giaquinto.springberry.common.logger.model.LogOut.WARNING -> {
-                logger.warn(logMessage.message)
-                U.write(logMessage)
-                W.write(logMessage)
-            }
+                it.giaquinto.springberry.common.logger.model.LogOut.WARNING -> {
+                    logger.warn(logMessage.message)
+                    U.write(logMessage)
+                    W.write(logMessage)
+                }
 
-            it.giaquinto.springberry.common.logger.model.LogOut.ERROR -> {
-                logger.error(logMessage.message)
-                U.write(logMessage)
-                E.write(logMessage)
+                it.giaquinto.springberry.common.logger.model.LogOut.ERROR -> {
+                    logger.error(logMessage.message)
+                    U.write(logMessage)
+                    E.write(logMessage)
+                }
             }
         }
 

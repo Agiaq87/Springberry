@@ -9,7 +9,8 @@ import it.giaquinto.springberry.raspberry.model.pin.RaspBerryPin
 import it.giaquinto.springberry.raspberry.model.pin.configuration.BlinkConfiguration
 import kotlinx.coroutines.*
 
-class RaspberryLedExecutorInformer(pi4jContext: Context, green: RaspBerryPin, yellow: RaspBerryPin, red: RaspBerryPin): RaspberryLedInformer {
+class RaspberryLedExecutorInformer(pi4jContext: Context, green: RaspBerryPin, yellow: RaspBerryPin, red: RaspBerryPin) :
+    RaspberryLedInformer {
 
     override val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO)
 
@@ -27,17 +28,23 @@ class RaspberryLedExecutorInformer(pi4jContext: Context, green: RaspBerryPin, ye
 
 
     fun onRequest(authorized: Boolean) =
-        if (authorized)
-            blink(greenLed, BlinkConfiguration.Request)
-        else
-            blink(yellowLed, BlinkConfiguration.Request)
+        coroutineScope.launch {
+            if (authorized)
+                blink(greenLed, BlinkConfiguration.Request)
+            else
+                blink(yellowLed, BlinkConfiguration.Request)
+        }
 
     fun onResponse(authorized: Boolean) =
-        if (authorized)
-            blink(greenLed, BlinkConfiguration.Response)
-        else
-            blink(yellowLed, BlinkConfiguration.Response)
+        coroutineScope.launch {
+            if (authorized)
+                blink(greenLed, BlinkConfiguration.Response)
+            else
+                blink(yellowLed, BlinkConfiguration.Response)
+        }
 
     fun onError() =
-        blink(redLed, BlinkConfiguration.HandlerException)
+        coroutineScope.launch {
+            blink(redLed, BlinkConfiguration.HandlerException)
+        }
 }

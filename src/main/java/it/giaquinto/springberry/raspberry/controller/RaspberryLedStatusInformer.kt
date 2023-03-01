@@ -9,55 +9,57 @@ import it.giaquinto.springberry.raspberry.model.pin.configuration.BlinkConfigura
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import java.lang.IllegalStateException
+import kotlinx.coroutines.launch
 
-class RaspberryLedStatusInformer(pi4jContext: Context, red: RaspBerryPin, green: RaspBerryPin, blue: RaspBerryPin): RaspberryLedInformer {
+class RaspberryLedStatusInformer(pi4jContext: Context, red: RaspBerryPin, green: RaspBerryPin, blue: RaspBerryPin) :
+    RaspberryLedInformer {
 
     override val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO)
 
     // GREEN
     // Default pin is 13 - BCM 27
     private val greenLed: DigitalOutput = pi4jContext.makeDigitalOutput(green)
-    private var greenJob: Thread? = null
+    private val greenJob: Thread by lazy {
+        Thread {
+            loop {
+                greenLed.on()
+                Thread.sleep(BlinkConfiguration.Normal.delay)
+                greenLed.off()
+                Thread.sleep(BlinkConfiguration.Normal.duration)
+            }
+        }
+    }
 
     // BLUE
     // Default pin is 15 - BCM 22
     private val blueLed: DigitalOutput = pi4jContext.makeDigitalOutput(blue)
-    private var blueJob: Job? = null
+    private var warningJob: Job? = null
 
     // RED
     // Default pin is 37 - BCM 26
     private val redLed: DigitalOutput = pi4jContext.makeDigitalOutput(red)
-    private var redJob: Job? = null
+    private var errorJob: Job? = null
 
     // Green led for springberry start
     // Combine with red for warning
     // Combine with blue for turquoise
 
-    fun onStart() {
-        greenJob = blink(greenLed, greenJob, BlinkConfiguration.Normal, true)
-    }
+    fun onStart() = greenJob.start() // Run forever
 
 
     fun onWarning() =
-        combineBlink(
-            listOf(greenLed, redLed),
-            listOf(greenJob, redJob),
-            BlinkConfiguration.Warning,
-            true
-        ).also {
-            greenJob = it[0].second
-            redJob = it[1].second
+        coroutineScope.launch {
+            warningJob = blink(
+                blueLed,
+                BlinkConfiguration.Warning
+            )
         }
 
     fun onError() =
-        combineBlink(
-            listOf(blueLed, redLed),
-            listOf(blueJob, redJob),
-            BlinkConfiguration.Warning,
-            true
-        ).also {
-            blueJob = it[0].second
-            redJob = it[1].second
+        coroutineScope.launch {
+            errorJob = blink(
+                redLed,
+                BlinkConfiguration.Error
+            )
         }
 }

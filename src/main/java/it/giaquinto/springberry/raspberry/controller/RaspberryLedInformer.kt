@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 interface RaspberryLedInformer {
     val coroutineScope: CoroutineScope
 
-    fun blink(
+    suspend fun blink(
         led: DigitalOutput,
         blinkConfiguration: BlinkConfiguration
     ): Job =
@@ -23,7 +23,7 @@ interface RaspberryLedInformer {
             delay(blinkConfiguration.duration)
         }
 
-    fun combineBlink(
+    suspend fun combineBlink(
         ledsList: List<DigitalOutput>,
         blinkConfiguration: BlinkConfiguration
     ): List<Pair<DigitalOutput, Job>> =

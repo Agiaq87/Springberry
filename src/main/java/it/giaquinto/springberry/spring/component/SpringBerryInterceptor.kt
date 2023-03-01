@@ -24,12 +24,8 @@ class SpringBerryInterceptor(
     private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO)
 
     override fun preHandle(request: HttpServletRequest, response: HttpServletResponse, handler: Any): Boolean {
-        coroutineScope.launch {
-            raspberryGPIOManager.raspberryLedExecutorInformer.onRequest(false)
-        }
-        coroutineScope.launch {
-            springBerryLoggerBean.writeLog(LogMessage.Direct(request.remoteUser))
-        }
+        raspberryGPIOManager.raspberryLedExecutorInformer.onRequest(false)
+        springBerryLoggerBean.writeLog(LogMessage.Direct(request.remoteUser))
 
         return super.preHandle(request, response, handler)
     }
@@ -40,12 +36,8 @@ class SpringBerryInterceptor(
         handler: Any,
         modelAndView: ModelAndView?
     ) {
-        coroutineScope.launch {
-            raspberryGPIOManager.raspberryLedExecutorInformer.onResponse(false)
-        }
-        coroutineScope.launch {
-            springBerryLoggerBean.writeLog(LogMessage.Direct("${response.status}"))
-        }
+        raspberryGPIOManager.raspberryLedExecutorInformer.onResponse(false)
+        springBerryLoggerBean.writeLog(LogMessage.Direct("${response.status}"))
         super.postHandle(request, response, handler, modelAndView)
     }
 
