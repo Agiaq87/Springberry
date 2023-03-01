@@ -1,0 +1,1 @@
+https://webtechie.be/post/2019-05-23-pi4j-adding-a-rest-interface-with-spring-boot/
